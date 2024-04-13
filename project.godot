@@ -59,3 +59,8 @@ Context={
 3d_physics/layer_3="map"
 3d_physics/layer_4="village"
 3d_physics/layer_5="circle"
+
+[specific]
+
+world/size=Vector2(1000, 1000)
+world/mesh_size=Vector2(1320, 1320)

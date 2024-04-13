@@ -1,16 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://b62w0fm25jrs0"]
+[gd_scene load_steps=6 format=3 uid="uid://b62w0fm25jrs0"]
+
+[ext_resource type="Script" path="res://Scenes/Map.gd" id="1_2mtcj"]
+[ext_resource type="Script" path="res://Scenes/walls_boundaries.gd" id="1_jnom5"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_tx7jg"]
-size = Vector2(1000, 1000)
+size = Vector2(1, 1)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_k27w1"]
 
-[node name="Map" type="MeshInstance3D"]
-mesh = SubResource("PlaneMesh_tx7jg")
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_cl35r"]
+plane = Plane(-1, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="Node" type="Node"]
+
+[node name="Map" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_tx7jg")
+script = ExtResource("1_2mtcj")
+
+[node name="floor_boundary" type="StaticBody3D" parent="."]
 collision_layer = 4
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor_boundary"]
 shape = SubResource("WorldBoundaryShape3D_k27w1")
+
+[node name="walls_boundaries" type="StaticBody3D" parent="."]
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_jnom5")
+
+[node name="CollisionShape3DplusX" type="CollisionShape3D" parent="walls_boundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_cl35r")
+
+[node name="CollisionShape3DminusX" type="CollisionShape3D" parent="walls_boundaries"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -500, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_cl35r")
+
+[node name="CollisionShape3DplusZ" type="CollisionShape3D" parent="walls_boundaries"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 500)
+shape = SubResource("WorldBoundaryShape3D_cl35r")
+
+[node name="CollisionShape3DminusZ" type="CollisionShape3D" parent="walls_boundaries"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -500)
+shape = SubResource("WorldBoundaryShape3D_cl35r")
