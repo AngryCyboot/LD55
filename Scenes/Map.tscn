@@ -1,7 +1,56 @@
-[gd_scene load_steps=6 format=3 uid="uid://b62w0fm25jrs0"]
+[gd_scene load_steps=15 format=3 uid="uid://b62w0fm25jrs0"]
 
+[ext_resource type="Shader" uid="uid://h6hnpffrhioj" path="res://Material/Ground.tres" id="1_2cuxi"]
 [ext_resource type="Script" path="res://Scenes/Map.gd" id="1_2mtcj"]
 [ext_resource type="Script" path="res://Scenes/walls_boundaries.gd" id="1_jnom5"]
+[ext_resource type="PackedScene" uid="uid://b6tcj6umhjcvv" path="res://Scenes/forest.tscn" id="5_koaoi"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_o6fjr"]
+frequency = 0.0171
+fractal_octaves = 4
+fractal_lacunarity = 3.065
+fractal_gain = 0.585
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_o7jw3"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_o6fjr")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5di0r"]
+frequency = 0.0023
+fractal_type = 2
+fractal_octaves = 3
+fractal_lacunarity = 4.135
+fractal_gain = 0.415
+fractal_weighted_strength = 0.55
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ivbvl"]
+generate_mipmaps = false
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_5di0r")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_34rg2"]
+noise_type = 0
+frequency = 0.0088
+fractal_type = 2
+fractal_octaves = 2
+fractal_lacunarity = 1.885
+fractal_gain = 0.165
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yxybo"]
+width = 1024
+height = 1024
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_34rg2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_og13v"]
+render_priority = 0
+shader = ExtResource("1_2cuxi")
+shader_parameter/Grass = Color(0, 0.352941, 0.0235294, 1)
+shader_parameter/Dirt = Color(0.4, 0.235294, 0.156863, 1)
+shader_parameter/Noise = SubResource("NoiseTexture2D_o7jw3")
+shader_parameter/Texture2DParameter = SubResource("NoiseTexture2D_yxybo")
+shader_parameter/Noise2 = SubResource("NoiseTexture2D_ivbvl")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_tx7jg"]
 size = Vector2(1, 1)
@@ -14,6 +63,8 @@ plane = Plane(-1, 0, 0, 0)
 [node name="Node" type="Node"]
 
 [node name="Map" type="MeshInstance3D" parent="."]
+transform = Transform3D(1320, 0, 0, 0, 1, 0, 0, 0, 1320, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_og13v")
 mesh = SubResource("PlaneMesh_tx7jg")
 script = ExtResource("1_2mtcj")
 
@@ -44,3 +95,8 @@ shape = SubResource("WorldBoundaryShape3D_cl35r")
 [node name="CollisionShape3DminusZ" type="CollisionShape3D" parent="walls_boundaries"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -500)
 shape = SubResource("WorldBoundaryShape3D_cl35r")
+
+[node name="Trees" parent="." instance=ExtResource("5_koaoi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -248.867, 0, 0)
+
+[connection signal="property_list_changed" from="Trees" to="Trees" method="_on_property_list_changed"]
