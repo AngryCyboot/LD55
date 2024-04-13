@@ -1,0 +1,50 @@
+[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://c15cf841bxvrx"]
+
+[ext_resource type="Shader" uid="uid://h6hnpffrhioj" path="res://Material/Ground.tres" id="1_qxylw"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_o6fjr"]
+frequency = 0.0171
+fractal_octaves = 4
+fractal_lacunarity = 3.065
+fractal_gain = 0.585
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_o7jw3"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_o6fjr")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5di0r"]
+frequency = 0.0023
+fractal_type = 2
+fractal_octaves = 3
+fractal_lacunarity = 4.135
+fractal_gain = 0.415
+fractal_weighted_strength = 0.55
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ivbvl"]
+generate_mipmaps = false
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_5di0r")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_34rg2"]
+noise_type = 0
+frequency = 0.0088
+fractal_type = 2
+fractal_octaves = 2
+fractal_lacunarity = 1.885
+fractal_gain = 0.165
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yxybo"]
+width = 1024
+height = 1024
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_34rg2")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_qxylw")
+shader_parameter/Grass = Color(0, 0.352941, 0.0235294, 1)
+shader_parameter/Dirt = Color(0.4, 0.235294, 0.156863, 1)
+shader_parameter/Noise = SubResource("NoiseTexture2D_o7jw3")
+shader_parameter/Texture2DParameter = SubResource("NoiseTexture2D_yxybo")
+shader_parameter/Noise2 = SubResource("NoiseTexture2D_ivbvl")
