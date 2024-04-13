@@ -2,16 +2,15 @@ extends RigidBody3D
 class_name NavAgent
 
 
-#@export var _nav_agent:NavigationAgent3D = null
+@export var _my_boss : NavAgent
 
 
-var _my_boss : NavAgent
-var _speed = ProjectSettings.get_setting("specific/enemies/sbire_speed", 15)
-var _angular_speed = deg_to_rad(ProjectSettings.get_setting("specific/enemies/sbire_angular_speed", 0.5))
-var _char_attraction_distance = ProjectSettings.get_setting("specific/enemies/char_attraction_distance", 50)
-var _destination_distance = ProjectSettings.get_setting("specific/enemies/destination_offset", 5)
-var _sbire_min_distance = ProjectSettings.get_setting("specific/enemies/sbire_min_distance", 20)
-var _sbire_max_distance = ProjectSettings.get_setting("specific/enemies/sbire_max_distance", 80)
+var _speed = ProjectSettings.get_setting("specific/enemies/sbire/speed", 15)
+var _angular_speed = deg_to_rad(ProjectSettings.get_setting("specific/enemies/sbire/angular_speed", 0.5))
+var _char_attraction_distance = ProjectSettings.get_setting("specific/enemies/char_attraction_distance", 80)
+var _destination_distance = ProjectSettings.get_setting("specific/enemies/sbire_destination_offset", 5)
+var _sbire_min_distance = ProjectSettings.get_setting("specific/enemies/sbire/min_distance_to_boss", 20)
+var _sbire_max_distance = ProjectSettings.get_setting("specific/enemies/sbire/max_distance_to_boss", 80)
 enum FollowState { Totem, Character, Boss }
 var _follow_state := FollowState.Totem
 
@@ -21,9 +20,9 @@ var _follow_state := FollowState.Totem
 
 func _ready() -> void:
 	if not _my_boss:
-		_speed = ProjectSettings.get_setting("specific/enemies/boss_speed", 5)
-		_angular_speed = deg_to_rad(ProjectSettings.get_setting("specific/enemies/boss_angular_speed", 0.4))
-		_destination_distance = ProjectSettings.get_setting("specific/enemies/boss_destination_offset", 20)
+		_speed = ProjectSettings.get_setting("specific/enemies/boss/speed", 5)
+		_angular_speed = deg_to_rad(ProjectSettings.get_setting("specific/enemies/boss/angular_speed", 0.35))
+		_destination_distance = ProjectSettings.get_setting("specific/enemies/boss/destination_offset", 20)
 	linear_velocity = Vector3(0, 0, _speed)
 
 

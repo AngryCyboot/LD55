@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://m6y446t0sadi"]
+[gd_scene load_steps=11 format=3 uid="uid://m6y446t0sadi"]
 
 [ext_resource type="PackedScene" uid="uid://b62w0fm25jrs0" path="res://Scenes/Map.tscn" id="1_u7ov3"]
 [ext_resource type="PackedScene" uid="uid://dykunhocgt6mr" path="res://Scenes/Village.tscn" id="2_q44hr"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_eleqy"]
 [ext_resource type="PackedScene" uid="uid://vxbcgijnwukf" path="res://Scenes/MainCam.tscn" id="6_kbuh7"]
 [ext_resource type="PackedScene" uid="uid://dmqub28jeeye1" path="res://Scenes/Boss.tscn" id="7_0tejl"]
+[ext_resource type="PackedScene" uid="uid://cvdittjs2laaw" path="res://Scenes/Sbire.tscn" id="8_x3jcw"]
 
 [sub_resource type="Environment" id="Environment_fxl0a"]
 
@@ -48,7 +49,32 @@ camera_3D_resource = null
 
 [node name="MainCam" parent="." instance=ExtResource("6_kbuh7")]
 transform = Transform3D(1, 0, 0, 0, 0.5373, 0.843391, 0, -0.843391, 0.5373, 0, 50.3401, 19.898)
-fov = 73.8455
+current = true
+fov = 73.8953
 
 [node name="Boss" parent="." instance=ExtResource("7_0tejl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, -250)
+
+[node name="Sbire" parent="." node_paths=PackedStringArray("_my_boss") instance=ExtResource("8_x3jcw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -218.065, 0, -254.209)
+_my_boss = NodePath("../Boss")
+
+[node name="Sbire2" parent="." node_paths=PackedStringArray("_my_boss") instance=ExtResource("8_x3jcw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -216.521, 0, -212.397)
+_my_boss = NodePath("../Boss")
+
+[node name="Sbire3" parent="." node_paths=PackedStringArray("_my_boss") instance=ExtResource("8_x3jcw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -285.323, 0, -210.603)
+_my_boss = NodePath("../Boss")
+
+[node name="Sbire4" parent="." node_paths=PackedStringArray("_my_boss") instance=ExtResource("8_x3jcw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -304.949, 0, -272.663)
+_my_boss = NodePath("../Boss")
+
+[node name="Sbire5" parent="." node_paths=PackedStringArray("_my_boss") instance=ExtResource("8_x3jcw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -264.792, 0, -309.604)
+_my_boss = NodePath("../Boss")
+
+[node name="Sbire6" parent="." node_paths=PackedStringArray("_my_boss") instance=ExtResource("8_x3jcw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -251.838, 0, -206.57)
+_my_boss = NodePath("../Boss")

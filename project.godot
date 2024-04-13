@@ -65,3 +65,12 @@ Context={
 
 world/size=Vector2(1000, 1000)
 world/mesh_size=Vector2(1320, 1320)
+enemies/sbire/speed=15.0
+enemies/sbire/angular_speed=5.0
+enemies/sbire/destination_offset=5.0
+enemies/boss/speed=5.0
+enemies/boss/angular_speed=0.35
+enemies/boss/destination_offset=20.0
+enemies/sbire/min_distance_to_boss=30.0
+enemies/sbire/max_distance_to_boss=50.0
+enemies/char_attraction_distance=80.0
