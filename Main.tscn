@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://m6y446t0sadi"]
+[gd_scene load_steps=9 format=3 uid="uid://m6y446t0sadi"]
 
 [ext_resource type="Script" path="res://Char.gd" id="1_o5fg3"]
+[ext_resource type="PackedScene" uid="uid://bd5htwp2larea" path="res://mecha_kaiju.tscn" id="2_hhnnu"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_tx7jg"]
 size = Vector2(1000, 1000)
@@ -55,3 +56,7 @@ environment = SubResource("Environment_fxl0a")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.880022, 0.474933, 0, -0.474933, -0.880022, 0, 54.1794, 0)
+shadow_enabled = true
+
+[node name="MechaKaiju" parent="." instance=ExtResource("2_hhnnu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 161.537, -7.62939e-06, 40.4158)
