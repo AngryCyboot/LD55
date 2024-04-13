@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://d02t4rglf4u2y"]
 
-[ext_resource type="Script" path="res://leg.gd" id="1_lm678"]
+[ext_resource type="Script" path="res://Ennemies/leg.gd" id="1_lm678"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_5af4m"]
 height = 8.0

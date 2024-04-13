@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://m6y446t0sadi"]
 
 [ext_resource type="Script" path="res://Char.gd" id="1_o5fg3"]
-[ext_resource type="PackedScene" uid="uid://bd5htwp2larea" path="res://mecha_kaiju.tscn" id="2_hhnnu"]
+[ext_resource type="PackedScene" uid="uid://bd5htwp2larea" path="res://Ennemies/mecha_kaiju.tscn" id="2_hhnnu"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_tx7jg"]
 size = Vector2(1000, 1000)
