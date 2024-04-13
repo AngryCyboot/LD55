@@ -2,12 +2,11 @@
 
 [ext_resource type="Script" path="res://Scenes/NavAgent.gd" id="1_nyl1x"]
 
-[node name="NavAgent" type="CharacterBody3D"]
+[node name="NavAgent" type="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.731142, 0)
 collision_layer = 2
 collision_mask = 31
 axis_lock_linear_y = true
 axis_lock_angular_x = true
 axis_lock_angular_z = true
-floor_max_angle = 0.0872665
 script = ExtResource("1_nyl1x")

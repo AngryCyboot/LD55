@@ -3,7 +3,7 @@
 [ext_resource type="Shader" uid="uid://h6hnpffrhioj" path="res://Material/Ground.tres" id="1_2cuxi"]
 [ext_resource type="Script" path="res://Scenes/Map.gd" id="1_2mtcj"]
 [ext_resource type="Script" path="res://Scenes/walls_boundaries.gd" id="1_jnom5"]
-[ext_resource type="PackedScene" uid="uid://b6tcj6umhjcvv" path="res://Scenes/forest.tscn" id="5_koaoi"]
+[ext_resource type="PackedScene" path="res://Scenes/forest.tscn" id="5_koaoi"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_o6fjr"]
 frequency = 0.0171
@@ -60,9 +60,9 @@ size = Vector2(1, 1)
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_cl35r"]
 plane = Plane(-1, 0, 0, 0)
 
-[node name="Node" type="Node"]
+[node name="Map" type="Node"]
 
-[node name="Map" type="MeshInstance3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1320, 0, 0, 0, 1, 0, 0, 0, 1320, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_og13v")
 mesh = SubResource("PlaneMesh_tx7jg")

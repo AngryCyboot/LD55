@@ -1,22 +1,52 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmqub28jeeye1"]
+[gd_scene load_steps=6 format=3 uid="uid://dmqub28jeeye1"]
 
 [ext_resource type="PackedScene" uid="uid://bbe1i874vdgyy" path="res://Scenes/NavAgent.tscn" id="1_nsb7v"]
+[ext_resource type="PackedScene" uid="uid://d02t4rglf4u2y" path="res://Ennemies/leg.tscn" id="2_3ntgo"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rjkl4"]
-radius = 12.0
-height = 50.0
+[sub_resource type="BoxShape3D" id="BoxShape3D_jh8an"]
+size = Vector3(20, 18.598, 30)
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_tj1lg"]
-radius = 12.0
-height = 50.0
+[sub_resource type="BoxMesh" id="BoxMesh_vgs4o"]
+size = Vector3(20, 12, 24)
 
-[node name="Boss" node_paths=PackedStringArray("_nav_agent") instance=ExtResource("1_nsb7v")]
-_nav_agent = NodePath("")
+[sub_resource type="PrismMesh" id="PrismMesh_vykuq"]
+size = Vector3(8, 8, 8)
+
+[node name="Boss" instance=ExtResource("1_nsb7v")]
+collision_mask = 15
+mass = 3000.0
+linear_velocity = Vector3(0, 0, 1)
+linear_damp_mode = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 6, 0)
-shape = SubResource("CapsuleShape3D_rjkl4")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.30758, 0)
+shape = SubResource("BoxShape3D_jh8an")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" index="0"]
-mesh = SubResource("CapsuleMesh_tj1lg")
-skeleton = NodePath("../..")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.9584, 0)
+mesh = SubResource("BoxMesh_vgs4o")
+
+[node name="Legs" type="Node3D" parent="MeshInstance3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.9584, 0)
+
+[node name="Leg" parent="MeshInstance3D/Legs" index="0" instance=ExtResource("2_3ntgo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.14, 0, 10)
+
+[node name="Leg2" parent="MeshInstance3D/Legs" index="1" instance=ExtResource("2_3ntgo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.14, 0, 10)
+
+[node name="Leg3" parent="MeshInstance3D/Legs" index="2" instance=ExtResource("2_3ntgo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.14, 0, 0)
+
+[node name="Leg4" parent="MeshInstance3D/Legs" index="3" instance=ExtResource("2_3ntgo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.14, 0, 0)
+
+[node name="Leg5" parent="MeshInstance3D/Legs" index="4" instance=ExtResource("2_3ntgo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.14, 0, -10)
+
+[node name="Leg6" parent="MeshInstance3D/Legs" index="5" instance=ExtResource("2_3ntgo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.14, 0, -10)
+
+[node name="head" type="MeshInstance3D" parent="MeshInstance3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 13.8867)
+mesh = SubResource("PrismMesh_vykuq")

@@ -1,15 +1,17 @@
-extends CharacterBody3D
+extends RigidBody3D
 class_name NavAgent
 
 
-@export var _nav_agent:NavigationAgent3D = null
+#@export var _nav_agent:NavigationAgent3D = null
 
 
 var _my_boss : NavAgent
-var _speed = ProjectSettings.get_setting("specific/boss/speed", 10)
-var _char_attraction_distance = ProjectSettings.get_setting("specific/boss/char_attraction_distance", 50)
-var _sbire_min_distance = ProjectSettings.get_setting("specific/boss/sbire_min_distance", 20)
-var _sbire_max_distance = ProjectSettings.get_setting("specific/boss/sbire_max_distance", 80)
+var _speed = ProjectSettings.get_setting("specific/enemies/sbire_speed", 15)
+var _angular_speed = deg_to_rad(ProjectSettings.get_setting("specific/enemies/sbire_angular_speed", 0.5))
+var _char_attraction_distance = ProjectSettings.get_setting("specific/enemies/char_attraction_distance", 50)
+var _destination_distance = ProjectSettings.get_setting("specific/enemies/destination_offset", 5)
+var _sbire_min_distance = ProjectSettings.get_setting("specific/enemies/sbire_min_distance", 20)
+var _sbire_max_distance = ProjectSettings.get_setting("specific/enemies/sbire_max_distance", 80)
 enum FollowState { Totem, Character, Boss }
 var _follow_state := FollowState.Totem
 
@@ -17,23 +19,33 @@ var _follow_state := FollowState.Totem
 @onready var _character : Node3D = get_tree().get_first_node_in_group("Character")
 
 
-func _physics_process(delta):
-	if _nav_agent.is_navigation_finished():
-		return
-	var next_position = _nav_agent.get_next_path_position()
-	var offset = next_position - global_position
-	global_position = global_position.move_toward(next_position, delta * _speed)
-	move_and_slide()
+func _ready() -> void:
+	if not _my_boss:
+		_speed = ProjectSettings.get_setting("specific/enemies/boss_speed", 5)
+		_angular_speed = deg_to_rad(ProjectSettings.get_setting("specific/enemies/boss_angular_speed", 0.4))
+		_destination_distance = ProjectSettings.get_setting("specific/enemies/boss_destination_offset", 20)
+	linear_velocity = Vector3(0, 0, _speed)
 
-	# Make the NavAgent look at the direction we're traveling.
-	# Clamp y to 0 so the robot only looks left and right, not up/down.
-	offset.y = 0
-	look_at(global_position + offset, Vector3.UP)
+
+func look_follow(state: PhysicsDirectBodyState3D, current_transform: Transform3D, target_position: Vector3) -> void:
+	var forward_local_axis: Vector3 = Vector3(0, 0, 1)
+	var forward_dir: Vector3 = (current_transform.basis * forward_local_axis).normalized()
+	var target_dir: Vector3 = (target_position - current_transform.origin).normalized()
+	var local_speed: float = clampf(_angular_speed, 0, acos(forward_dir.dot(target_dir)))
+	if abs(forward_dir.dot(target_dir)) > 1e-4:
+		state.angular_velocity = local_speed * forward_dir.cross(target_dir) / state.step
+	if current_transform.origin.distance_to(target_position) > _destination_distance:
+		linear_velocity = forward_dir * _speed
+
+
+func _integrate_forces(state):
+	if _target_node:
+		var target_position = _target_node.global_transform.origin
+		look_follow(state, global_transform, target_position)
 
 
 func _process(_delta: float) -> void:
 	determine_target()
-	_nav_agent.target_position = _target_node.global_position
 
 var _target_node:Node3D=null
 func determine_target() -> void:

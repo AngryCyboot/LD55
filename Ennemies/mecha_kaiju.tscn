@@ -12,8 +12,8 @@ size = Vector3(20, 12, 24)
 [sub_resource type="PrismMesh" id="PrismMesh_mpl7l"]
 size = Vector3(8, 8, 8)
 
-[node name="MechaKaiju" type="AnimatableBody3D"]
-sync_to_physics = false
+[node name="MechaKaiju" type="RigidBody3D"]
+mass = 3000.0
 script = ExtResource("1_2tqfd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

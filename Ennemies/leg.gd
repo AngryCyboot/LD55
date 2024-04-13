@@ -25,7 +25,7 @@ func _process(delta):
 		mobile = true
 		visual.set_instance_shader_parameter("mobile",mobile)
 	if mobile:
-		step($"../../..".target,delta)
+		step($"../../.."._target_node.global_position,delta)
 		last_pos = global_position
 		var angle : float = atan2(parent.global_position.x-global_position.x,parent.global_position.z-global_position.z)
 		rotation.y = lerp_angle(rotation.y,angle,delta)
