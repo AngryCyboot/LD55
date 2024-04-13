@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://1r1t71hits1d"]
+
+[ext_resource type="Script" path="res://Char.gd" id="1_ul0x1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q88io"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_uqn1v"]
+
+[node name="Char" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.731142, 0)
+collision_mask = 30
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+floor_max_angle = 0.0872665
+script = ExtResource("1_ul0x1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_q88io")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_uqn1v")
+skeleton = NodePath("../..")

@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://m6y446t0sadi"]
+
+[ext_resource type="PackedScene" uid="uid://b62w0fm25jrs0" path="res://Scenes/Map.tscn" id="1_u7ov3"]
+[ext_resource type="PackedScene" uid="uid://dykunhocgt6mr" path="res://Scenes/Village.tscn" id="2_q44hr"]
+[ext_resource type="PackedScene" uid="uid://1r1t71hits1d" path="res://Scenes/Char.tscn" id="3_fyrox"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="4_mt10q"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_eleqy"]
+[ext_resource type="PackedScene" uid="uid://vxbcgijnwukf" path="res://Scenes/MainCam.tscn" id="6_kbuh7"]
+
+[sub_resource type="Environment" id="Environment_fxl0a"]
+
+[sub_resource type="Resource" id="Resource_546gc"]
+script = ExtResource("5_eleqy")
+duration = 1.0
+transition = 0
+ease = 2
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Map" parent="." instance=ExtResource("1_u7ov3")]
+
+[node name="Village" parent="." instance=ExtResource("2_q44hr")]
+
+[node name="Char" parent="." instance=ExtResource("3_fyrox")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fxl0a")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.880022, 0.474933, 0, -0.474933, -0.880022, 0, 54.1794, 0)
+
+[node name="PhantomCamera3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5373, 0.843391, 0, -0.843391, 0.5373, 0, 50.3401, 19.898)
+script = ExtResource("4_mt10q")
+priority_override = false
+priority = 0
+follow_mode = 2
+follow_target = NodePath("../Char")
+follow_parameters/target_offset = Vector3(0, 49.609, 19.898)
+follow_parameters/damping = true
+follow_parameters/damping_value = 10.0
+look_at_mode = 0
+tween_parameters = SubResource("Resource_546gc")
+tween_on_load = true
+inactive_update_mode = 0
+camera_3D_resource = null
+
+[node name="MainCam" parent="." instance=ExtResource("6_kbuh7")]
+transform = Transform3D(1, 0, 0, 0, 0.5373, 0.843391, 0, -0.843391, 0.5373, 0, 50.3401, 19.898)
+fov = 74.4484
