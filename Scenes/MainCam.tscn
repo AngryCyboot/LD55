@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://vxbcgijnwukf"]
+
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_pwyuw"]
+
+[node name="Camera3D" type="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.5373, 0.843391, 0, -0.843391, 0.5373, 0, 50.3401, 19.898)
+fov = 74.9936
+
+[node name="PhantomCameraHost" type="Node" parent="."]
+script = ExtResource("1_pwyuw")
