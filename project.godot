@@ -55,10 +55,11 @@ Context={
 [layer_names]
 
 3d_physics/layer_1="char"
-3d_physics/layer_2="ennemies"
+3d_physics/layer_2="boss"
 3d_physics/layer_3="map"
 3d_physics/layer_4="village"
 3d_physics/layer_5="circle"
+3d_physics/layer_6="sbire"
 
 [specific]
 
