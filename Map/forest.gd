@@ -1,4 +1,3 @@
-@tool
 extends MultiMeshInstance3D
 
 @export var instances : int = 1000
@@ -26,9 +25,6 @@ func _process(_delta):
 					if trans.origin.distance_to(mecha_pos) <10:
 						trans = trans.looking_at(Vector3(mecha_pos.x,500,mecha_pos.z),Vector3.UP,true)
 						multimesh.set_instance_transform(i,trans)
-
-func _on_property_list_changed():
-	setup()
 
 func setup():
 	multimesh.instance_count = instances

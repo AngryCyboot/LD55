@@ -33,6 +33,7 @@ script = ExtResource("1_7pero")
 [node name="Area3D" type="Area3D" parent="."]
 disable_mode = 2
 collision_layer = 4
+collision_mask = 6
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
