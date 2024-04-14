@@ -1,62 +1,80 @@
-[gd_scene load_steps=9 format=3 uid="uid://m6y446t0sadi"]
+[gd_scene load_steps=11 format=3 uid="uid://m6y446t0sadi"]
 
-[ext_resource type="Script" path="res://Char.gd" id="1_o5fg3"]
-[ext_resource type="PackedScene" uid="uid://bd5htwp2larea" path="res://Ennemies/mecha_kaiju.tscn" id="2_hhnnu"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_tx7jg"]
-size = Vector2(1000, 1000)
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_k27w1"]
-
-[sub_resource type="PrismMesh" id="PrismMesh_tf6to"]
-size = Vector3(20, 20, 10)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q88io"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_uqn1v"]
+[ext_resource type="PackedScene" uid="uid://b62w0fm25jrs0" path="res://Map/Map.tscn" id="1_u7ov3"]
+[ext_resource type="PackedScene" uid="uid://dykunhocgt6mr" path="res://Map/Village.tscn" id="2_q44hr"]
+[ext_resource type="PackedScene" uid="uid://1r1t71hits1d" path="res://Character/Char.tscn" id="3_fyrox"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="4_mt10q"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_eleqy"]
+[ext_resource type="PackedScene" uid="uid://vxbcgijnwukf" path="res://MainCam.tscn" id="6_kbuh7"]
+[ext_resource type="PackedScene" uid="uid://dmqub28jeeye1" path="res://Ennemies/Boss.tscn" id="7_0tejl"]
+[ext_resource type="PackedScene" uid="uid://cvdittjs2laaw" path="res://Ennemies/Sbire.tscn" id="8_x3jcw"]
 
 [sub_resource type="Environment" id="Environment_fxl0a"]
 
+[sub_resource type="Resource" id="Resource_546gc"]
+script = ExtResource("5_eleqy")
+duration = 1.0
+transition = 0
+ease = 2
+
 [node name="Node3D" type="Node3D"]
 
-[node name="Map" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_tx7jg")
+[node name="Map" parent="." instance=ExtResource("1_u7ov3")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Map"]
+[node name="Village" parent="." instance=ExtResource("2_q44hr")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/StaticBody3D"]
-shape = SubResource("WorldBoundaryShape3D_k27w1")
-
-[node name="Village" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.73675)
-mesh = SubResource("PrismMesh_tf6to")
-
-[node name="Char" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.731142, 0)
-axis_lock_linear_y = true
-axis_lock_angular_x = true
-axis_lock_angular_z = true
-floor_max_angle = 0.0872665
-script = ExtResource("1_o5fg3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Char"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_q88io")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Char/CollisionShape3D"]
-mesh = SubResource("CapsuleMesh_uqn1v")
-skeleton = NodePath("../..")
-
-[node name="Camera3D" type="Camera3D" parent="Char"]
-transform = Transform3D(1, 0, 0, 0, 0.5373, 0.843391, 0, -0.843391, 0.5373, 0, 49.609, 19.898)
-current = true
+[node name="Char" parent="." instance=ExtResource("3_fyrox")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_fxl0a")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.880022, 0.474933, 0, -0.474933, -0.880022, 0, 54.1794, 0)
-shadow_enabled = true
 
-[node name="MechaKaiju" parent="." instance=ExtResource("2_hhnnu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 161.537, -7.62939e-06, 40.4158)
+[node name="PhantomCamera3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5373, 0.843391, 0, -0.843391, 0.5373, 0, 50.3401, 19.898)
+script = ExtResource("4_mt10q")
+priority_override = false
+priority = 0
+follow_mode = 2
+follow_target = NodePath("../Char")
+follow_parameters/target_offset = Vector3(0, 49.609, 19.898)
+follow_parameters/damping = true
+follow_parameters/damping_value = 10.0
+look_at_mode = 0
+tween_parameters = SubResource("Resource_546gc")
+tween_on_load = true
+inactive_update_mode = 0
+camera_3D_resource = null
+
+[node name="MainCam" parent="." instance=ExtResource("6_kbuh7")]
+transform = Transform3D(1, 0, 0, 0, 0.5373, 0.843391, 0, -0.843391, 0.5373, 0, 50.3401, 19.898)
+current = true
+fov = 15.4375
+
+[node name="Boss" parent="." instance=ExtResource("7_0tejl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, -250)
+
+[node name="Sbire" parent="." node_paths=PackedStringArray("_my_boss") instance=ExtResource("8_x3jcw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -218.065, 0, -254.209)
+_my_boss = NodePath("../Boss")
+
+[node name="Sbire2" parent="." node_paths=PackedStringArray("_my_boss") instance=ExtResource("8_x3jcw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -216.521, 0, -212.397)
+_my_boss = NodePath("../Boss")
+
+[node name="Sbire3" parent="." node_paths=PackedStringArray("_my_boss") instance=ExtResource("8_x3jcw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -285.323, 0, -210.603)
+_my_boss = NodePath("../Boss")
+
+[node name="Sbire4" parent="." node_paths=PackedStringArray("_my_boss") instance=ExtResource("8_x3jcw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -304.949, 0, -272.663)
+_my_boss = NodePath("../Boss")
+
+[node name="Sbire5" parent="." node_paths=PackedStringArray("_my_boss") instance=ExtResource("8_x3jcw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -264.792, 0, -309.604)
+_my_boss = NodePath("../Boss")
+
+[node name="Sbire6" parent="." node_paths=PackedStringArray("_my_boss") instance=ExtResource("8_x3jcw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -251.838, 0, -206.57)
+_my_boss = NodePath("../Boss")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dmqub28jeeye1"]
 
-[ext_resource type="PackedScene" uid="uid://bbe1i874vdgyy" path="res://Scenes/NavAgent.tscn" id="1_nsb7v"]
+[ext_resource type="PackedScene" uid="uid://bbe1i874vdgyy" path="res://Ennemies/NavAgent.tscn" id="1_nsb7v"]
 [ext_resource type="PackedScene" uid="uid://d02t4rglf4u2y" path="res://Ennemies/leg.tscn" id="2_3ntgo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jh8an"]

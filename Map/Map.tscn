@@ -1,9 +1,9 @@
 [gd_scene load_steps=15 format=3 uid="uid://b62w0fm25jrs0"]
 
 [ext_resource type="Shader" uid="uid://h6hnpffrhioj" path="res://Material/Ground.tres" id="1_2cuxi"]
-[ext_resource type="Script" path="res://Scenes/Map.gd" id="1_2mtcj"]
-[ext_resource type="Script" path="res://Scenes/walls_boundaries.gd" id="1_jnom5"]
-[ext_resource type="PackedScene" path="res://Scenes/forest.tscn" id="5_koaoi"]
+[ext_resource type="Script" path="res://Map/Map.gd" id="1_2mtcj"]
+[ext_resource type="Script" path="res://Map/walls_boundaries.gd" id="1_jnom5"]
+[ext_resource type="PackedScene" uid="uid://b6tcj6umhjcvv" path="res://Map/forest.tscn" id="5_koaoi"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_o6fjr"]
 frequency = 0.0171
