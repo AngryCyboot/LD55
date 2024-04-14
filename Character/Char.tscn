@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://1r1t71hits1d"]
+[gd_scene load_steps=7 format=3 uid="uid://1r1t71hits1d"]
 
 [ext_resource type="Script" path="res://Character/Char.gd" id="1_t51nl"]
+[ext_resource type="AudioStream" uid="uid://b3mxxfvhrb5ic" path="res://Resources/Sound effects/dash.mp3" id="2_rdas7"]
+[ext_resource type="AudioStream" uid="uid://8vocnrlcpt4r" path="res://Resources/Sound effects/player_hurt.wav" id="3_pd1qg"]
+[ext_resource type="AudioStream" uid="uid://c4dpei846fbh3" path="res://Resources/Sound effects/spawn.mp3" id="4_ha17b"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q88io"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_uqn1v"]
 
-[node name="Char" type="CharacterBody3D" groups=["Character"]]
+[node name="Char" type="CharacterBody3D" node_paths=PackedStringArray("dash_sound") groups=["Character"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.731142, 0)
 collision_mask = 30
 axis_lock_linear_y = true
@@ -14,6 +17,7 @@ axis_lock_angular_x = true
 axis_lock_angular_z = true
 floor_max_angle = 0.0872665
 script = ExtResource("1_t51nl")
+dash_sound = NodePath("Dash")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -22,3 +26,13 @@ shape = SubResource("CapsuleShape3D_q88io")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
 mesh = SubResource("CapsuleMesh_uqn1v")
 skeleton = NodePath("../..")
+
+[node name="Dash" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_rdas7")
+bus = &"SFX"
+
+[node name="Death" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_pd1qg")
+
+[node name="Spawn" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_ha17b")

@@ -8,10 +8,12 @@ transform = Transform3D(1, 0, 0, 0, 0.5373, 0.843391, 0, -0.843391, 0.5373, 0, 5
 fov = 74.9936
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
+current = true
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_wwbgp")
 autoplay = true
+bus = &"Music"
 
 [node name="PhantomCameraHost" type="Node" parent="."]
 script = ExtResource("1_1ai66")

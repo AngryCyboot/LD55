@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmqub28jeeye1"]
+[gd_scene load_steps=10 format=3 uid="uid://dmqub28jeeye1"]
 
 [ext_resource type="PackedScene" uid="uid://bbe1i874vdgyy" path="res://Ennemies/NavAgent.tscn" id="1_nsb7v"]
 [ext_resource type="PackedScene" uid="uid://d02t4rglf4u2y" path="res://Ennemies/leg.tscn" id="2_3ntgo"]
-[ext_resource type="Material" uid="uid://npry6wqsyid5" path="res://Material/RobotMat.tres" id="2_vvjbn"]
+[ext_resource type="Material" path="res://Material/RobotMat.tres" id="2_vvjbn"]
 [ext_resource type="ArrayMesh" uid="uid://dqsm7lbmfqm42" path="res://Ennemies/Mesh/KaijuBody.obj" id="3_ex1oi"]
 [ext_resource type="Script" path="res://Ennemies/legs_manager.gd" id="4_wk1tu"]
 [ext_resource type="Script" path="res://Ennemies/Kaiju_brain.gd" id="6_iim1w"]
+[ext_resource type="AudioStream" uid="uid://blxwbfcdy0286" path="res://Resources/Sound effects/meca_move.mp3" id="7_7shdu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jh8an"]
 size = Vector3(20, 18.598, 30)
@@ -13,12 +14,14 @@ size = Vector3(20, 18.598, 30)
 [sub_resource type="PrismMesh" id="PrismMesh_vykuq"]
 size = Vector3(8, 8, 8)
 
-[node name="Boss" instance=ExtResource("1_nsb7v")]
+[node name="Boss" node_paths=PackedStringArray("move_left_sound", "move_right_sound") instance=ExtResource("1_nsb7v")]
 disable_mode = 2
 collision_mask = 15
 mass = 3000.0
 linear_velocity = Vector3(0, 0, 1)
 linear_damp_mode = 1
+move_left_sound = NodePath("move_left")
+move_right_sound = NodePath("move_right")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.30758, 0)
@@ -79,3 +82,13 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.875,
 light_energy = 50.0
 spot_range = 150.0
 spot_angle = 10.0
+
+[node name="move_left" type="AudioStreamPlayer3D" parent="." index="3"]
+stream = ExtResource("7_7shdu")
+volume_db = 20.0
+bus = &"SFX"
+
+[node name="move_right" type="AudioStreamPlayer3D" parent="." index="4"]
+stream = ExtResource("7_7shdu")
+volume_db = 20.0
+bus = &"SFX"

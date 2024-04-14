@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/meca_move.mp3-6d763b471f12426d27c1d341d9cbbe9
 
 [params]
 
-loop=false
-loop_offset=0
-bpm=0
+loop=true
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

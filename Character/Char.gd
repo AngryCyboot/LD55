@@ -2,6 +2,9 @@ extends CharacterBody3D
 
 @export var dash_time : float = 0.2
 @export var dash_speed : float = 20
+@export var dash_sound : AudioStreamPlayer3D
+@export var death_sound : AudioStreamPlayer3D
+@export var spawn_sound : AudioStreamPlayer3D
 
 var dashing : bool = false
 var timer : float = 0
@@ -25,6 +28,7 @@ func _process(delta):
 func _input(event):
 	if event.is_action_pressed("Dash") and not dashing:
 		dashing = true
+		if not dash_sound.playing : dash_sound.play()
 		timer = 0
 		velocity *= dash_speed
 	if event.is_action_pressed("Context"):
