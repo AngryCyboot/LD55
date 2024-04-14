@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmqub28jeeye1"]
+[gd_scene load_steps=12 format=3 uid="uid://dmqub28jeeye1"]
 
 [ext_resource type="PackedScene" uid="uid://bbe1i874vdgyy" path="res://Ennemies/NavAgent.tscn" id="1_nsb7v"]
 [ext_resource type="PackedScene" uid="uid://d02t4rglf4u2y" path="res://Ennemies/leg.tscn" id="2_3ntgo"]
-[ext_resource type="Material" path="res://Material/RobotMat.tres" id="2_vvjbn"]
+[ext_resource type="Material" uid="uid://npry6wqsyid5" path="res://Material/RobotMat.tres" id="2_vvjbn"]
+[ext_resource type="Script" path="res://Ennemies/Boss.gd" id="2_y5dak"]
 [ext_resource type="ArrayMesh" uid="uid://dqsm7lbmfqm42" path="res://Ennemies/Mesh/KaijuBody.obj" id="3_ex1oi"]
 [ext_resource type="Script" path="res://Ennemies/legs_manager.gd" id="4_wk1tu"]
 [ext_resource type="Script" path="res://Ennemies/Kaiju_brain.gd" id="6_iim1w"]
@@ -14,12 +15,17 @@ size = Vector3(20, 18.598, 30)
 [sub_resource type="PrismMesh" id="PrismMesh_vykuq"]
 size = Vector3(8, 8, 8)
 
-[node name="Boss" node_paths=PackedStringArray("move_left_sound", "move_right_sound") instance=ExtResource("1_nsb7v")]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ra3u8"]
+height = 10.0
+radius = 1.0
+
+[node name="Boss" node_paths=PackedStringArray("move_left_sound", "move_right_sound") groups=["Boss"] instance=ExtResource("1_nsb7v")]
 disable_mode = 2
 collision_mask = 15
 mass = 3000.0
 linear_velocity = Vector3(0, 0, 1)
 linear_damp_mode = 1
+script = ExtResource("2_y5dak")
 move_left_sound = NodePath("move_left")
 move_right_sound = NodePath("move_right")
 
@@ -92,3 +98,9 @@ bus = &"SFX"
 stream = ExtResource("7_7shdu")
 volume_db = 20.0
 bus = &"SFX"
+
+[node name="BossUnsummoningArea" type="Area3D" parent="." index="5"]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="BossUnsummoningArea" index="0"]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
+shape = SubResource("CylinderShape3D_ra3u8")
