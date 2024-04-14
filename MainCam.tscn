@@ -6,7 +6,6 @@
 [node name="Camera3D" type="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 0.5373, 0.843391, 0, -0.843391, 0.5373, 0, 50.3401, 19.898)
 fov = 74.9936
-script = ExtResource("1_1ai66")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 
