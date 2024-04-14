@@ -3,8 +3,10 @@ class_name NavAgent
 
 
 @export var _my_boss : NavAgent
+@export var move_left_sound : AudioStreamPlayer3D
+@export var move_right_sound : AudioStreamPlayer3D
 
-
+var _audio_delay_timer := Timer.new()
 var _speed = ProjectSettings.get_setting("specific/enemies/sbire/speed", 15)
 var _angular_speed = deg_to_rad(ProjectSettings.get_setting("specific/enemies/sbire/angular_speed", 0.5))
 var _char_attraction_distance = ProjectSettings.get_setting("specific/enemies/char_attraction_distance", 80)
@@ -19,11 +21,15 @@ var _follow_state := FollowState.Totem
 
 
 func _ready() -> void:
+	_audio_delay_timer.wait_time = 4.0
+	_audio_delay_timer.one_shot = true
+	_audio_delay_timer.autostart = true
+	add_child(_audio_delay_timer)
 	if not _my_boss:
 		_speed = ProjectSettings.get_setting("specific/enemies/boss/speed", 5)
 		_angular_speed = deg_to_rad(ProjectSettings.get_setting("specific/enemies/boss/angular_speed", 0.35))
 		_destination_distance = ProjectSettings.get_setting("specific/enemies/boss/destination_offset", 20)
-	linear_velocity = Vector3(0, 0, _speed)
+	linear_velocity = Vector3(0, 0, _speed)	
 
 
 func look_follow(state: PhysicsDirectBodyState3D, current_transform: Transform3D, target_position: Vector3) -> void:
@@ -45,6 +51,9 @@ func _integrate_forces(state):
 
 func _process(_delta: float) -> void:
 	determine_target()
+	#Start sound here. No automatic play to manage sound delay
+	if move_left_sound and not move_left_sound.playing : move_left_sound.play()
+	if move_right_sound and not move_right_sound.playing and _audio_delay_timer.is_stopped(): move_right_sound.play()
 
 var _target_node:Node3D=null
 func determine_target() -> void:
