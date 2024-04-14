@@ -25,7 +25,6 @@ func _process(delta):
 	var extention : float = global_position.distance_to(rest_pos.global_position)
 	if extention> max_extention+close_enough*2 and not is_mobile:
 		mobile(true)
-		print("max")
 	if is_mobile:
 		step(compute_foot_target(),delta)
 		var angle : float = atan2(parent.global_position.x-global_position.x,parent.global_position.z-global_position.z)

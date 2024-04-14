@@ -20,4 +20,3 @@ func _process(delta):
 				furthest=leg
 		if dist > furthest.max_extention : 
 			furthest.mobile(true)
-			print("managed")
