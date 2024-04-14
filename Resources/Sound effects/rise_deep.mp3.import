@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bjxpvt30sxhgc"
+path="res://.godot/imported/rise_deep.mp3-877cc56b1da7419734bd561bcbc953e1.mp3str"
+
+[deps]
+
+source_file="res://Resources/Sound effects/rise_deep.mp3"
+dest_files=["res://.godot/imported/rise_deep.mp3-877cc56b1da7419734bd561bcbc953e1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

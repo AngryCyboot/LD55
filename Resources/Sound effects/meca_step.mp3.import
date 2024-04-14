@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bjntepbvksjy8"
+path="res://.godot/imported/meca_step.mp3-88845d50648948056c80ddc52d74d88b.mp3str"
+
+[deps]
+
+source_file="res://Resources/Sound effects/meca_step.mp3"
+dest_files=["res://.godot/imported/meca_step.mp3-88845d50648948056c80ddc52d74d88b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

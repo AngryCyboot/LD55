@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dg7ayg14v6nvv"
+path="res://.godot/imported/summon_part.mp3-b90a44d795cc0f03d40048a9fa6f8acc.mp3str"
+
+[deps]
+
+source_file="res://Resources/Sound effects/summon_part.mp3"
+dest_files=["res://.godot/imported/summon_part.mp3-b90a44d795cc0f03d40048a9fa6f8acc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

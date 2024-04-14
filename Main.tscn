@@ -51,7 +51,7 @@ camera_3D_resource = null
 [node name="MainCam" parent="." instance=ExtResource("6_kbuh7")]
 transform = Transform3D(1, 0, 0, 0, 0.5373, 0.843391, 0, -0.843391, 0.5373, 0, 50.3401, 19.898)
 current = true
-fov = 15.4375
+fov = 74.9633
 
 [node name="Boss" parent="." instance=ExtResource("7_0tejl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, -250)
