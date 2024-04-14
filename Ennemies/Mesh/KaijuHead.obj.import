@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://usdqm321vy71"
+path="res://.godot/imported/KaijuHead.obj-967dab4e7dcf47f9bc0962869602401a.mesh"
+
+[deps]
+
+files=["res://.godot/imported/KaijuHead.obj-967dab4e7dcf47f9bc0962869602401a.mesh"]
+
+source_file="res://Ennemies/Mesh/KaijuHead.obj"
+dest_files=["res://.godot/imported/KaijuHead.obj-967dab4e7dcf47f9bc0962869602401a.mesh", "res://.godot/imported/KaijuHead.obj-967dab4e7dcf47f9bc0962869602401a.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
