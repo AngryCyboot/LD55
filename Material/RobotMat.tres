@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://npry6wqsyid5"]
+
+[ext_resource type="Shader" uid="uid://32gfv44mqhvk" path="res://Material/Robot.tres" id="1_66vot"]
+[ext_resource type="Texture2D" uid="uid://bwjwcdqxlemk1" path="res://Material/robot_palet.png" id="2_d13ml"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_66vot")
+shader_parameter/Palette = ExtResource("2_d13ml")
