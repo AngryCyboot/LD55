@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmqub28jeeye1"]
+[gd_scene load_steps=9 format=3 uid="uid://dmqub28jeeye1"]
 
 [ext_resource type="PackedScene" uid="uid://bbe1i874vdgyy" path="res://Ennemies/NavAgent.tscn" id="1_nsb7v"]
 [ext_resource type="PackedScene" uid="uid://d02t4rglf4u2y" path="res://Ennemies/leg.tscn" id="2_3ntgo"]
 [ext_resource type="Material" uid="uid://npry6wqsyid5" path="res://Material/RobotMat.tres" id="2_vvjbn"]
 [ext_resource type="ArrayMesh" uid="uid://dqsm7lbmfqm42" path="res://Ennemies/Mesh/KaijuBody.obj" id="3_ex1oi"]
 [ext_resource type="Script" path="res://Ennemies/legs_manager.gd" id="4_wk1tu"]
+[ext_resource type="Script" path="res://Ennemies/Kaiju_brain.gd" id="6_iim1w"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jh8an"]
 size = Vector3(20, 18.598, 30)
@@ -55,7 +56,26 @@ collision_layer = 2
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19.5902, 0, 18)
 collision_layer = 2
 
-[node name="head" type="MeshInstance3D" parent="." index="2"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 15.0234, 28.0041)
+[node name="Head" type="Node3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.111, 17.0151)
+script = ExtResource("6_iim1w")
+light_colors = PackedColorArray(1, 0, 0, 1, 1, 0.462745, 0, 1, 0.054902, 1, 0, 1)
+
+[node name="Neck" type="Node3D" parent="Head" index="0"]
+
+[node name="HeadVisual" type="MeshInstance3D" parent="Head/Neck" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 8)
 mesh = SubResource("PrismMesh_vykuq")
-skeleton = NodePath("../MeshInstance3D")
+skeleton = NodePath("../../../MeshInstance3D")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Head/Neck/HeadVisual" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1.87496, 0, 0)
+light_energy = 50.0
+spot_range = 150.0
+spot_angle = 10.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Head/Neck/HeadVisual" index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.875, 0, 0)
+light_energy = 50.0
+spot_range = 150.0
+spot_angle = 10.0
