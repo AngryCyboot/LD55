@@ -5,6 +5,11 @@ extends CharacterBody3D
 
 var dashing : bool = false
 var timer : float = 0
+var _current_unsummoning_circle:Node3D = null
+var _current_unsummoning_circle_part:CirclePart = null
+
+@onready var _unsummoning_circle_scene:= preload("res://Character/UnsummonCircle.tscn")
+
 
 func _process(delta):
 	if not dashing :
@@ -22,3 +27,31 @@ func _input(event):
 		dashing = true
 		timer = 0
 		velocity *= dash_speed
+	if event.is_action_pressed("Context"):
+		if _current_unsummoning_circle == null:
+			#todo can summon circle ?
+			if true:
+				draw_unsummon_circle()
+		elif _current_unsummoning_circle_part != null:
+			draw_unsummon_circle_part()
+
+
+func draw_unsummon_circle():
+	_current_unsummoning_circle = _unsummoning_circle_scene.instantiate()
+	_current_unsummoning_circle.position = Vector3(global_position.x, 0.1, global_position.z)
+	_current_unsummoning_circle.connect("character_entered_part", enter_part)
+	_current_unsummoning_circle.connect("character_exited_part", exit_part)
+	get_tree().root.add_child(_current_unsummoning_circle, true)
+
+
+func draw_unsummon_circle_part():
+	_current_unsummoning_circle_part.next_one()
+
+
+func enter_part(part:CirclePart):
+	_current_unsummoning_circle_part = part
+
+
+func exit_part(part:CirclePart):
+	if part == _current_unsummoning_circle_part:
+		_current_unsummoning_circle_part = null
