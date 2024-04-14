@@ -8,8 +8,8 @@ func _ready():
 		if leg is Leg : legs.append(leg)
 	mobile = legs.size()
 
-func _process(delta):
-	var max_mobile : int = legs.size()/2
+func _process(_delta):
+	var max_mobile : int = int(legs.size()/2.0)
 	if mobile < max_mobile and $"../.."._target_node.global_position.distance_to(global_position)>1:
 		var dist : float = -1
 		var furthest : Leg
