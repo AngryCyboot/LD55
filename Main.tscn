@@ -30,6 +30,7 @@ environment = SubResource("Environment_fxl0a")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.880022, 0.474933, 0, -0.474933, -0.880022, 0, 54.1794, 0)
+shadow_enabled = true
 
 [node name="PhantomCamera3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5373, 0.843391, 0, -0.843391, 0.5373, 0, 50.3401, 19.898)
