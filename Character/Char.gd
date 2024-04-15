@@ -15,7 +15,7 @@ var _current_unsummoning_circle:Node3D = null
 var _current_unsummoning_circle_part:CirclePart = null
 
 
-@onready var _unsummoning_circle_scene:= preload("res://Character/UnsummonCircle.tscn")
+@onready var _unsummoning_circle_scene:= preload("res://Character/UnsummonCircleExample.tscn")
 
 
 func _ready():
