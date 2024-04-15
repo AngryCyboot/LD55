@@ -1,8 +1,15 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://dp3x8oj4l0jum"]
+[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://dp3x8oj4l0jum"]
+
+[sub_resource type="AudioEffectFilter" id="AudioEffectFilter_s1sxd"]
+resource_name = "Filter"
+resonance = 0.83
+gain = 1.32
+db = 3
 
 [resource]
 bus/0/volume_db = -0.130497
-bus/0/send = &"Delay SFX"
+bus/0/effect/0/effect = SubResource("AudioEffectFilter_s1sxd")
+bus/0/effect/0/enabled = false
 bus/1/name = &"Music"
 bus/1/solo = false
 bus/1/mute = false

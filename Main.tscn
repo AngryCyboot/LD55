@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cvdittjs2laaw" path="res://Ennemies/Sbire.tscn" id="8_x3jcw"]
 
 [sub_resource type="Environment" id="Environment_fxl0a"]
+adjustment_enabled = true
 
 [sub_resource type="Resource" id="Resource_546gc"]
 script = ExtResource("5_eleqy")
@@ -23,7 +24,9 @@ ease = 2
 
 [node name="Village" parent="." instance=ExtResource("2_q44hr")]
 
-[node name="Char" parent="." instance=ExtResource("3_fyrox")]
+[node name="Char" parent="." node_paths=PackedStringArray("village") instance=ExtResource("3_fyrox")]
+village = NodePath("../Village")
+environement = SubResource("Environment_fxl0a")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_fxl0a")

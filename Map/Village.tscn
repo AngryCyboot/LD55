@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dykunhocgt6mr"]
+[gd_scene load_steps=5 format=3 uid="uid://dykunhocgt6mr"]
 
+[ext_resource type="Script" path="res://Map/Village.gd" id="1_e5pmk"]
 [ext_resource type="PackedScene" uid="uid://dgjwrwtls2s8l" path="res://Map/Totem.tscn" id="1_fdyty"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_tf6to"]
@@ -12,6 +13,7 @@ radius = 6.0
 [node name="Village" type="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.73675)
 mesh = SubResource("PrismMesh_tf6to")
+script = ExtResource("1_e5pmk")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 8
@@ -30,3 +32,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 15)
 
 [node name="Totem4" parent="." instance=ExtResource("1_fdyty")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -15)
+
+[node name="SpawnPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40.5982)
