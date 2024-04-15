@@ -7,12 +7,13 @@ signal character_exited_unsummoning_area(boss)
 
 @export var move_left_sound : AudioStreamPlayer3D
 @export var move_right_sound : AudioStreamPlayer3D
-
+@export var unsummon_color_code : Vector3 = Vector3(1,1,2)
 
 var _audio_delay_timer := Timer.new()
-
+var sbires : Array[NavAgent]
 
 @onready var unsummoning_area:Area3D=$BossUnsummoningArea
+@onready var prompt :Sprite3D=$Sprite3D
 
 
 func _ready() -> void:
@@ -37,7 +38,13 @@ func _body_entered_unsummoning_area(body:Node3D):
 	if body.is_in_group("Character"):
 		emit_signal("character_entered_unsummoning_area", self)
 
-
 func _body_exited_unsummoning_area(body:Node3D):
 	if body.is_in_group("Character"):
 		emit_signal("character_exited_unsummoning_area", self)
+
+func unsummon():
+	for sbire in sbires:
+		sbire.queue_free()
+	for bod in unsummoning_area.get_overlapping_bodies():
+		_body_exited_unsummoning_area(bod)
+	queue_free()

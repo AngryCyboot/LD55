@@ -63,7 +63,7 @@ plane = Plane(-1, 0, 0, 0)
 [node name="Map" type="Node"]
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1320, 0, 0, 0, 1, 0, 0, 0, 1320, 0, 0, 0)
+transform = Transform3D(1500, 0, 0, 0, 1, 0, 0, 0, 1500, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_og13v")
 mesh = SubResource("PlaneMesh_tx7jg")
 script = ExtResource("1_2mtcj")

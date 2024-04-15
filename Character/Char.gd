@@ -18,12 +18,6 @@ var alive : bool = true
 
 @onready var _unsummoning_circle_scene:= preload("res://Character/UnsummonCircleExample.tscn")
 
-func _ready():
-	# todo: a boss spawner and a signal "boss_spawned" 
-	for b in get_tree().get_nodes_in_group("Boss"):
-		b.connect("character_entered_unsummoning_area", enter_boss_unsummoning_area)
-		b.connect("character_exited_unsummoning_area", exit_boss_unsummoning_area)
-
 
 func _process(delta):
 	if alive:
@@ -61,6 +55,8 @@ func draw_unsummon_circle():
 	_current_unsummoning_circle.connect("character_exited_part", exit_part)
 	_current_unsummoning_circle._boss_to_unsummon = _current_boss
 	get_tree().root.add_child(_current_unsummoning_circle, true)
+	_current_boss.prompt.visible = false
+	update_ring()
 
 
 func draw_unsummon_circle_part():
@@ -78,17 +74,31 @@ func exit_part(part:CirclePart):
 
 func enter_boss_unsummoning_area(boss:Boss):
 	_current_boss = boss
+	if _current_unsummoning_circle == null:
+		boss.prompt.visible = true
 
 
 func exit_boss_unsummoning_area(boss:Boss):
 	if boss == _current_boss:
 		_current_boss = null
+	boss.prompt.visible = false
+
+func update_ring() -> void:
+	if _current_unsummoning_circle != null:
+		$ColoRing.visible = true
+		$ColoRing.set_instance_shader_parameter("color_code",_current_unsummoning_circle.color_code)
+	else:
+		$ColoRing.visible = false
 
 func you_died() -> void :
 	alive = false
 	timer = 0
 	AudioServer.set_bus_effect_enabled(0,0,true)
 	environement.adjustment_saturation = 0.5
+
+func boss_spawned(boss)-> void:
+		boss.connect("character_entered_unsummoning_area", enter_boss_unsummoning_area)
+		boss.connect("character_exited_unsummoning_area", exit_boss_unsummoning_area)
 
 func respawn() -> void:
 	if timer > 0.8 and global_position.distance_to(village.spawn()) > 1:

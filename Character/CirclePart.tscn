@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxve7sf5kwtgb"]
+[gd_scene load_steps=13 format=3 uid="uid://cxve7sf5kwtgb"]
 
 [ext_resource type="Script" path="res://Character/CirclePart.gd" id="1_sassf"]
 [ext_resource type="Material" uid="uid://be6o1hustkq7j" path="res://Material/CirclePart_R.tres" id="2_dqmo5"]
 [ext_resource type="Material" uid="uid://begvxeanx5hmk" path="res://Material/CirclePart_G.tres" id="3_v4j5k"]
 [ext_resource type="Material" uid="uid://chid205ybwcfq" path="res://Material/CirclePart_B.tres" id="4_haldg"]
+[ext_resource type="Script" path="res://Ennemies/Sprite3D.gd" id="5_l5kf5"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_c17a1"]
 size = Vector2(100, 100)
@@ -21,6 +22,23 @@ top_radius = 10.0
 bottom_radius = 10.0
 height = 0.001
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_ig8gg"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tssx8"]
+border_width_bottom = 6
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i06yf"]
+border_width_bottom = 6
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [node name="CirclePart" type="MeshInstance3D"]
 mesh = SubResource("PlaneMesh_c17a1")
 script = ExtResource("1_sassf")
@@ -36,3 +54,81 @@ shape = SubResource("CylinderShape3D_h3y2s")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Center"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 mesh = SubResource("CylinderMesh_ecrox")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+visible = false
+sorting_offset = 100.0
+billboard = 1
+texture = SubResource("ViewportTexture_ig8gg")
+script = ExtResource("5_l5kf5")
+dist = 10.0
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D"]
+transparent_bg = true
+size = Vector2i(512, 256)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Sprite3D/SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -11.5
+offset_right = 256.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+alignment = 1
+
+[node name="Panel" type="Panel" parent="Sprite3D/SubViewport/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_styles/panel = SubResource("StyleBoxFlat_tssx8")
+
+[node name="Label" type="Label" parent="Sprite3D/SubViewport/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -11.5
+offset_right = 23.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+text = "Space"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Sprite3D/SubViewport/HBoxContainer"]
+z_index = 1
+layout_mode = 2
+size_flags_vertical = 1
+text = " A "
+horizontal_alignment = 1
+
+[node name="Panel2" type="Panel" parent="Sprite3D/SubViewport/HBoxContainer/Label2"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_stretch_ratio = 0.5
+theme_override_styles/panel = SubResource("StyleBoxFlat_i06yf")
+
+[node name="Label" type="Label" parent="Sprite3D/SubViewport/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "To color the unsummoning circle"
+autowrap_mode = 3
