@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1f7cp6idk8u6"]
+
+[ext_resource type="Texture2D" uid="uid://b68fjfmqbe2xn" path="res://Resources/Texture/Target.png" id="1_wueac"]
+
+[node name="Targetted" type="Sprite3D"]
+transform = Transform3D(5, 0, 0, 0, -2.18557e-07, -5, 0, 5, -2.18557e-07, 0, 0, 0)
+top_level = true
+lod_bias = 39.474
+texture = ExtResource("1_wueac")

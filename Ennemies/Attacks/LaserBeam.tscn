@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1kcvstyb7ab8"]
+
+[ext_resource type="Script" path="res://Ennemies/Attacks/LaserBeam.gd" id="1_bx161"]
+[ext_resource type="Material" uid="uid://sufacmc2rtgo" path="res://Material/LaserBeam.tres" id="1_ilnq7"]
+[ext_resource type="Material" uid="uid://dasfohap7krkj" path="res://Material/LaserExplosion.tres" id="2_qymb8"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ycc6t"]
+material = ExtResource("1_ilnq7")
+top_radius = 0.25
+bottom_radius = 0.25
+height = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_yn6qn"]
+material = ExtResource("2_qymb8")
+height = 0.5
+is_hemisphere = true
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qd6d1"]
+
+[node name="LaserBeam" type="Node3D"]
+script = ExtResource("1_bx161")
+
+[node name="LaserPivot" type="Node3D" parent="."]
+visible = false
+
+[node name="LaserMesh" type="MeshInstance3D" parent="LaserPivot"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-07, -1, 0, 10, -4.37114e-08, 0, 0, 5)
+mesh = SubResource("CylinderMesh_ycc6t")
+skeleton = NodePath("../..")
+
+[node name="LaserExplosion" type="Node3D" parent="."]
+transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0, 0, 0)
+visible = false
+
+[node name="LaserExplosionMesh" type="MeshInstance3D" parent="LaserExplosion"]
+mesh = SubResource("SphereMesh_yn6qn")
+
+[node name="Area3D" type="Area3D" parent="LaserExplosion"]
+collision_layer = 2
+collision_mask = 9
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LaserExplosion/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_qd6d1")
+
+[connection signal="body_entered" from="LaserExplosion/Area3D" to="." method="body_entered_laser_explosion"]

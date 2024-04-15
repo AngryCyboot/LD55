@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cbrw1dnr6docy"]
+[gd_scene load_steps=8 format=3 uid="uid://c2a00ilvqohbd"]
 
 [ext_resource type="Material" uid="uid://npry6wqsyid5" path="res://Material/RobotMat.tres" id="1_tbv8s"]
 [ext_resource type="ArrayMesh" uid="uid://uylqaxst631q" path="res://Ennemies/Mesh/KaijuTurret.obj" id="2_opf45"]
@@ -27,7 +27,6 @@ material_override = ExtResource("1_tbv8s")
 mesh = ExtResource("2_opf45")
 script = ExtResource("3_p612u")
 max_angle = 120.0
-charge_speed = 0.3
 attack_length = 0.25
 
 [node name="Sphere" type="MeshInstance3D" parent="."]

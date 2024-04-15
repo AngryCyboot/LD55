@@ -5,9 +5,10 @@ var sbire_scene :  PackedScene = preload("res://Ennemies/Sbire.tscn")
 
 @export var spawn_radius : float = 1000
 @export var spawn_time : float = 60
-@export var char : CharacterBody3D
 
-@onready var timer : float = spawn_time -5
+
+@onready var _char : CharacterBody3D = get_tree().get_first_node_in_group("Character")
+@onready var timer : float = spawn_time - 5
 
 func _process(delta):
 	timer += delta
@@ -26,5 +27,5 @@ func _process(delta):
 			var pos = Vector3(cos(angle),0,sin(angle))*60
 			boss.add_sibling(sbire)
 			sbire.global_position = pos + boss.global_position
-		char.boss_spawned(boss)
+		_char.boss_spawned(boss)
 		timer = 0

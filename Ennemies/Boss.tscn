@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dmqub28jeeye1"]
+[gd_scene load_steps=20 format=3 uid="uid://dmqub28jeeye1"]
 
 [ext_resource type="PackedScene" uid="uid://bbe1i874vdgyy" path="res://Ennemies/NavAgent.tscn" id="1_nsb7v"]
 [ext_resource type="PackedScene" uid="uid://d02t4rglf4u2y" path="res://Ennemies/leg.tscn" id="2_3ntgo"]
@@ -7,10 +7,11 @@
 [ext_resource type="ArrayMesh" uid="uid://dqsm7lbmfqm42" path="res://Ennemies/Mesh/KaijuBody.obj" id="3_ex1oi"]
 [ext_resource type="Script" path="res://Ennemies/legs_manager.gd" id="4_wk1tu"]
 [ext_resource type="Script" path="res://Ennemies/Kaiju_brain.gd" id="6_iim1w"]
-[ext_resource type="PackedScene" uid="uid://kq63icylhd7l" path="res://Ennemies/joint.tscn" id="7_5kgil"]
+[ext_resource type="PackedScene" path="res://Ennemies/joint.tscn" id="7_5kgil"]
 [ext_resource type="AudioStream" uid="uid://blxwbfcdy0286" path="res://Resources/Sound effects/meca_move.mp3" id="7_7shdu"]
-[ext_resource type="PackedScene" uid="uid://cbrw1dnr6docy" path="res://Ennemies/kaiju_turret.tscn" id="8_geuck"]
+[ext_resource type="PackedScene" uid="uid://c2a00ilvqohbd" path="res://Ennemies/kaiju_turret.tscn" id="8_geuck"]
 [ext_resource type="ArrayMesh" uid="uid://usdqm321vy71" path="res://Ennemies/Mesh/KaijuHead.obj" id="8_qnjin"]
+[ext_resource type="PackedScene" uid="uid://c1f7cp6idk8u6" path="res://Ennemies/Attacks/targetted.tscn" id="10_ymi74"]
 [ext_resource type="Script" path="res://Ennemies/Sprite3D.gd" id="12_0lybx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jh8an"]
@@ -25,7 +26,7 @@ height = 10.0
 radius = 1.0
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_4gtvw"]
-viewport_path = NodePath("Sprite3D/SubViewport")
+viewport_path = NodePath("Controls/SubViewport")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oemxw"]
 border_width_bottom = 6
@@ -171,6 +172,7 @@ connection = NodePath("../../Legs/Leg6/CollisionShape3D")
 [node name="Head" type="Node3D" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.111, 17.0151)
 script = ExtResource("6_iim1w")
+is_head = true
 
 [node name="Neck" type="Node3D" parent="Head" index="0"]
 
@@ -216,11 +218,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.65597)
 skeleton = NodePath("../../MeshInstance3D/Joints")
 connection = NodePath("../Neck/Pïvot/HeadVisual")
 
+[node name="Targetted" parent="Head" index="2" instance=ExtResource("10_ymi74")]
+visible = false
+
 [node name="KaijuTurretL" parent="." index="3" instance=ExtResource("8_geuck")]
 transform = Transform3D(-4.37114e-08, 0.320613, -0.94721, 0, 0.94721, 0.320613, 1, 1.40144e-08, -4.14039e-08, 12.383, 25.963, -13.827)
 
+[node name="Targetted" parent="KaijuTurretL" index="1" instance=ExtResource("10_ymi74")]
+visible = false
+
 [node name="KaijuTurretR" parent="." index="4" instance=ExtResource("8_geuck")]
 transform = Transform3D(-4.14088e-08, -0.320282, 0.947322, -1.4e-08, 0.947322, 0.320282, -1, 0, -4.37114e-08, -12.3825, 25.9629, -13.8272)
+
+[node name="Targetted" parent="KaijuTurretR" index="1" instance=ExtResource("10_ymi74")]
+visible = false
 
 [node name="move_left" type="AudioStreamPlayer3D" parent="." index="5"]
 stream = ExtResource("7_7shdu")
@@ -240,7 +251,7 @@ monitorable = false
 transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
 shape = SubResource("CylinderShape3D_ra3u8")
 
-[node name="Sprite3D" type="Sprite3D" parent="." index="8"]
+[node name="Controls" type="Sprite3D" parent="." index="8"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 visible = false
 sorting_offset = 100.0
@@ -248,11 +259,11 @@ billboard = 1
 texture = SubResource("ViewportTexture_4gtvw")
 script = ExtResource("12_0lybx")
 
-[node name="SubViewport" type="SubViewport" parent="Sprite3D" index="0"]
+[node name="SubViewport" type="SubViewport" parent="Controls" index="0"]
 transparent_bg = true
 size = Vector2i(512, 256)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Sprite3D/SubViewport" index="0"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Controls/SubViewport" index="0"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -269,13 +280,13 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
 alignment = 1
 
-[node name="Panel" type="Panel" parent="Sprite3D/SubViewport/HBoxContainer" index="0"]
+[node name="Panel" type="Panel" parent="Controls/SubViewport/HBoxContainer" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 theme_override_styles/panel = SubResource("StyleBoxFlat_oemxw")
 
-[node name="Label" type="Label" parent="Sprite3D/SubViewport/HBoxContainer/Panel" index="0"]
+[node name="Label" type="Label" parent="Controls/SubViewport/HBoxContainer/Panel" index="0"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -292,14 +303,14 @@ size_flags_horizontal = 3
 text = "Space"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="Sprite3D/SubViewport/HBoxContainer" index="1"]
+[node name="Label2" type="Label" parent="Controls/SubViewport/HBoxContainer" index="1"]
 z_index = 1
 layout_mode = 2
 size_flags_vertical = 1
 text = " A "
 horizontal_alignment = 1
 
-[node name="Panel2" type="Panel" parent="Sprite3D/SubViewport/HBoxContainer/Label2" index="0"]
+[node name="Panel2" type="Panel" parent="Controls/SubViewport/HBoxContainer/Label2" index="0"]
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
@@ -310,7 +321,7 @@ grow_vertical = 2
 size_flags_stretch_ratio = 0.5
 theme_override_styles/panel = SubResource("StyleBoxFlat_lprm5")
 
-[node name="Label" type="Label" parent="Sprite3D/SubViewport/HBoxContainer" index="2"]
+[node name="Label" type="Label" parent="Controls/SubViewport/HBoxContainer" index="2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1

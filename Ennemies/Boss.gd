@@ -13,7 +13,7 @@ var _audio_delay_timer := Timer.new()
 var sbires : Array[NavAgent]
 
 @onready var unsummoning_area:Area3D=$BossUnsummoningArea
-@onready var prompt :Sprite3D=$Sprite3D
+@onready var prompt :Sprite3D=$Controls
 
 
 func _ready() -> void:
