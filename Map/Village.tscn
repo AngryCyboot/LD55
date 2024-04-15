@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dykunhocgt6mr"]
+[gd_scene load_steps=13 format=3 uid="uid://dykunhocgt6mr"]
 
 [ext_resource type="Script" path="res://Map/Village.gd" id="1_e5pmk"]
 [ext_resource type="PackedScene" uid="uid://dgjwrwtls2s8l" path="res://Map/Totem.tscn" id="1_fdyty"]
-
-[sub_resource type="PrismMesh" id="PrismMesh_tf6to"]
-size = Vector3(20, 20, 10)
+[ext_resource type="Material" uid="uid://npry6wqsyid5" path="res://Material/RobotMat.tres" id="3_uf57y"]
+[ext_resource type="ArrayMesh" uid="uid://d1fe8td1d1wpy" path="res://Map/Mesh/House.obj" id="4_2ntua"]
+[ext_resource type="Script" path="res://Map/CityPlaner.gd" id="5_6pgfp"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_bqpsl"]
 height = 20.0
@@ -26,9 +26,17 @@ albedo_color = Color(0.203922, 0.152941, 0.0666667, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_lqe8y"]
 size = Vector3(20, 12, 2)
 
-[node name="Village" type="MeshInstance3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_fivro"]
+size = Vector3(20, 12, 2)
+
+[sub_resource type="MultiMesh" id="MultiMesh_fkq4f"]
+transform_format = 1
+instance_count = 45
+mesh = ExtResource("4_2ntua")
+buffer = PackedFloat32Array(2, 3, 0.44, 0.73, 0.98, 1, 0.0121951, 0.103448, 0, 3, 0.44, 0.73, 0.98, 1, 0, 0.103448, 2.13397, 2.5, 0.44, 0.73, 0.98, 1, 0.013012, 0.0862069, 0.401924, 1.5, 0.44, 0.73, 0.98, 1, 0.00245076, 0.0517241, 2.5, 2.13397, 0.44, 0.73, 0.98, 1, 0.0152439, 0.0735853, 1.5, 0.401924, 0.44, 0.73, 0.98, 1, 0.00914634, 0.0138594, 3, 2, 0.44, 0.73, 0.98, 1, 0.0182927, 0.0689655, 3, 0, 0.44, 0.73, 0.98, 1, 0.0182927, 0, 161, 2, 0.44, 0.73, 0.98, 1, 0.981707, 0.0689655, 161, 0, 0.44, 0.73, 0.98, 1, 0.981707, 0, 161.5, 2.13397, 0.44, 0.73, 0.98, 1, 0.984756, 0.0735853, 162.5, 0.401924, 0.44, 0.73, 0.98, 1, 0.990854, 0.0138594, 161.866, 2.5, 0.44, 0.73, 0.98, 1, 0.986988, 0.0862069, 163.598, 1.5, 0.44, 0.73, 0.98, 1, 0.997549, 0.0517241, 162, 3, 0.44, 0.73, 0.98, 1, 0.987805, 0.103448, 164, 3, 0.44, 0.73, 0.98, 1, 1, 0.103448, 162, 26, 0.44, 0.73, 0.98, 1, 0.987805, 0.896552, 164, 26, 0.44, 0.73, 0.98, 1, 1, 0.896552, 161.866, 26.5, 0.44, 0.73, 0.98, 1, 0.986988, 0.913793, 163.598, 27.5, 0.44, 0.73, 0.98, 1, 0.997549, 0.948276, 161.5, 26.866, 0.44, 0.73, 0.98, 1, 0.984756, 0.926415, 162.5, 28.5981, 0.44, 0.73, 0.98, 1, 0.990854, 0.986141, 161, 27, 0.44, 0.73, 0.98, 1, 0.981707, 0.931035, 161, 29, 0.44, 0.73, 0.98, 1, 0.981707, 1, 3, 27, 0.44, 0.73, 0.98, 1, 0.0182927, 0.931035, 3, 29, 0.44, 0.73, 0.98, 1, 0.0182927, 1, 2.5, 26.866, 0.44, 0.73, 0.98, 1, 0.0152439, 0.926415, 1.5, 28.5981, 0.44, 0.73, 0.98, 1, 0.00914634, 0.986141, 2.13397, 26.5, 0.44, 0.73, 0.98, 1, 0.013012, 0.913793, 0.401924, 27.5, 0.44, 0.73, 0.98, 1, 0.00245076, 0.948276, 2, 26, 0.44, 0.73, 0.98, 1, 0.0121951, 0.896552, 0, 26, 0.44, 0.73, 0.98, 1, 0, 0.896552, 0, 2.8026e-45, 1.4013e-45, 1.4013e-45, 4.2039e-45, 2.8026e-45, 2.8026e-45, 5.60519e-45, 4.2039e-45, 4.2039e-45, 7.00649e-45, 5.60519e-45, 5.60519e-45, 8.40779e-45, 7.00649e-45, 7.00649e-45, 9.80909e-45, 8.40779e-45, 8.40779e-45, 1.12104e-44, 9.80909e-45, 9.80909e-45, 1.26117e-44, 1.12104e-44, 1.12104e-44, 1.4013e-44, 1.26117e-44, 1.26117e-44, 1.54143e-44, 1.4013e-44, 1.4013e-44, 1.68156e-44, 1.54143e-44, 1.54143e-44, 1.82169e-44, 1.68156e-44, 1.68156e-44, 1.96182e-44, 1.82169e-44, 1.82169e-44, 2.10195e-44, 1.96182e-44, 1.96182e-44, 2.24208e-44, 2.10195e-44, 2.10195e-44, 2.38221e-44, 2.24208e-44, 2.24208e-44, 2.52234e-44, 2.38221e-44, 2.38221e-44, 2.66247e-44, 2.52234e-44, 2.52234e-44, 2.8026e-44, 2.66247e-44, 2.66247e-44, 2.94273e-44, 2.8026e-44, 2.8026e-44, 3.08286e-44, 2.94273e-44, 2.94273e-44, 3.22299e-44, 3.08286e-44, 3.08286e-44, 3.36312e-44, 3.22299e-44, 3.22299e-44, 3.50325e-44, 3.36312e-44, 3.36312e-44, 3.64338e-44, 3.50325e-44, 3.50325e-44, 3.78351e-44, 3.64338e-44, 3.64338e-44, 3.92364e-44, 3.78351e-44, 3.78351e-44, 4.06377e-44, 3.92364e-44, 3.92364e-44, 4.2039e-44, 4.06377e-44, 4.06377e-44, 4.34403e-44, 4.2039e-44, 4.2039e-44, 0, 4.34403e-44, 4.34403e-44, 1.4013e-45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[node name="Village" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.73675)
-mesh = SubResource("PrismMesh_tf6to")
 script = ExtResource("1_e5pmk")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
@@ -66,6 +74,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 55)
 material_override = SubResource("StandardMaterial3D_md6qd")
 mesh = SubResource("BoxMesh_lqe8y")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Path3D/MeshInstance3D"]
+collision_layer = 8
+collision_mask = 35
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Path3D/MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_fivro")
+
 [node name="Totems" type="Node3D" parent="."]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
 
@@ -84,3 +99,9 @@ skeleton = NodePath("../..")
 [node name="Totem4" parent="Totems" instance=ExtResource("1_fdyty")]
 transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0, 0, -80)
 skeleton = NodePath("../..")
+
+[node name="CityPlaner" type="MultiMeshInstance3D" parent="."]
+material_override = ExtResource("3_uf57y")
+multimesh = SubResource("MultiMesh_fkq4f")
+script = ExtResource("5_6pgfp")
+space = 15.0
