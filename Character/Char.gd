@@ -1,16 +1,18 @@
 extends CharacterBody3D
 
-
+@export var movement_speed : float = 3000
 @export var dash_time : float = 0.2
-@export var dash_speed : float = 20
+@export var dash_cooldown_time : float = 1.0
+@export var dash_speed : float = 15
 @export var dash_sound : AudioStreamPlayer3D
 @export var death_sound : AudioStreamPlayer3D
 @export var spawn_sound : AudioStreamPlayer3D
 @export var village : Node3D
 @export var environement : Environment
 
-var dashing : bool = false
+var ready_to_dash : bool = true
 var timer : float = 0
+var cooldown_timer : float = 0
 var _current_boss:Boss = null
 var _current_unsummoning_circle:Node3D = null
 var _current_unsummoning_circle_part:CirclePart = null
@@ -21,24 +23,30 @@ var alive : bool = true
 
 func _process(delta):
 	if alive:
-		if not dashing :
+		#Update timers
+		if timer < dash_time:
+			timer += delta
+		if cooldown_timer < dash_cooldown_time:
+			cooldown_timer += delta
+		#Dash time ends, reset velocity
+		if timer >= dash_time:
 			var char_input : Vector2 = Input.get_vector("West", "East", "North", "South")
-			velocity = Vector3(char_input.x,0,char_input.y)*delta*500
-		else:
-			if timer < dash_time:
-				timer += delta
-			else:
-				dashing = false
+			velocity = Vector3(char_input.x,0,char_input.y)*delta*movement_speed
+		#Cooldown ok ? Enable dash
+		if cooldown_timer >= dash_cooldown_time:
+			ready_to_dash = true
+			
 		move_and_slide()
 	else:
 		timer+=delta
 		respawn()
 
 func _input(event):
-	if event.is_action_pressed("Dash") and not dashing:
-		dashing = true
+	if event.is_action_pressed("Dash") and ready_to_dash:
+		ready_to_dash = false
 		if not dash_sound.playing : dash_sound.play()
 		timer = 0
+		cooldown_timer = 0
 		velocity *= dash_speed
 	if event.is_action_pressed("Context"):
 		if _current_unsummoning_circle == null:
