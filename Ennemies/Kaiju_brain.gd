@@ -10,7 +10,8 @@ extends Node3D
 @onready var agent : NavAgent = $".."
 @onready var pivot : Node3D = get_child(0).get_child(0)
 @onready var _laser_beam_scene : PackedScene = preload("res://Ennemies/Attacks/LaserBeam.tscn")
-@onready var _targetted : Node3D = $Targetted
+@onready var _targetted_scene : PackedScene = preload("res://Ennemies/Attacks/targetted.tscn")
+@onready var _targetted : Node3D = null
 
 
 var target : Node3D
@@ -20,12 +21,15 @@ var charge_duration : float = 4
 var lights : Array[SpotLight3D]
 var is_in_range : bool = false
 var attack_timer : float = 0
-var attack_duration : float = 1.5
+var attack_duration : float = 2.4
 
 
 func _ready():
 	for light in pivot.get_children():
 		if light is SpotLight3D: lights.append(light)
+	
+	_targetted = _targetted_scene.instantiate()
+	get_tree().root.add_child(_targetted)
 
 
 func _process(delta):
