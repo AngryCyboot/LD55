@@ -27,6 +27,7 @@ char = NodePath("Char")
 [node name="Village" parent="." instance=ExtResource("2_q44hr")]
 
 [node name="Char" parent="." node_paths=PackedStringArray("village") instance=ExtResource("3_fyrox")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.731142, 60.1205)
 village = NodePath("../Village")
 environement = SubResource("Environment_fxl0a")
 
@@ -38,7 +39,7 @@ transform = Transform3D(1, 0, 0, 0, -0.880022, 0.474933, 0, -0.474933, -0.880022
 shadow_enabled = true
 
 [node name="PhantomCamera3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.5373, 0.843391, 0, -0.843391, 0.5373, 0, 50.3401, 19.898)
+transform = Transform3D(1, 0, 0, 0, 0.5373, 0.843391, 0, -0.843391, 0.5373, 0, 50.3401, 80.0185)
 script = ExtResource("4_mt10q")
 priority_override = false
 priority = 0
@@ -54,6 +55,7 @@ inactive_update_mode = 0
 camera_3D_resource = null
 
 [node name="MainCam" parent="." instance=ExtResource("6_kbuh7")]
+transform = Transform3D(1, 0, 0, 0, 0.5373, 0.843391, 0, -0.843391, 0.5373, 0, 50.3401, 80.0185)
 current = true
 fov = 74.4163
 

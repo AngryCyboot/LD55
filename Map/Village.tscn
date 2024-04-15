@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dykunhocgt6mr"]
+[gd_scene load_steps=9 format=3 uid="uid://dykunhocgt6mr"]
 
 [ext_resource type="Script" path="res://Map/Village.gd" id="1_e5pmk"]
 [ext_resource type="PackedScene" uid="uid://dgjwrwtls2s8l" path="res://Map/Totem.tscn" id="1_fdyty"]
@@ -9,6 +9,22 @@ size = Vector3(20, 20, 10)
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_bqpsl"]
 height = 20.0
 radius = 6.0
+
+[sub_resource type="Curve3D" id="Curve3D_4b8af"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 30, 0, 0, 10, 0, 55, 0, 0, 30, 0, 0, -30, 65, 0, 0, 30, 0, 0, -30, 0, 0, 0, 0, -65, 0, 0, -30, 0, 0, 30, -65, 0, 0, -20, 0, 0, 0, 0, 0, -10, 0, 55),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jctr5"]
+albedo_color = Color(0.290196, 0.184314, 0.0823529, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_md6qd"]
+albedo_color = Color(0.203922, 0.152941, 0.0666667, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lqe8y"]
+size = Vector3(20, 12, 2)
 
 [node name="Village" type="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.73675)
@@ -22,16 +38,49 @@ collision_mask = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("CylinderShape3D_bqpsl")
 
-[node name="Totem" parent="." instance=ExtResource("1_fdyty")]
-
-[node name="Totem2" parent="." instance=ExtResource("1_fdyty")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 3, 0)
-
-[node name="Totem3" parent="." instance=ExtResource("1_fdyty")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 15)
-
-[node name="Totem4" parent="." instance=ExtResource("1_fdyty")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -15)
-
 [node name="SpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40.5982)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 63.4356)
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_4b8af")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Path3D"]
+material_override = SubResource("StandardMaterial3D_jctr5")
+use_collision = true
+collision_layer = 8
+collision_mask = 35
+polygon = PackedVector2Array(0, 0, 0, 10, 2, 10, 2, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 55)
+material_override = SubResource("StandardMaterial3D_md6qd")
+mesh = SubResource("BoxMesh_lqe8y")
+
+[node name="Totems" type="Node3D" parent="."]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+
+[node name="Totem" parent="Totems" instance=ExtResource("1_fdyty")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 80, 0, 0)
+skeleton = NodePath("../..")
+
+[node name="Totem2" parent="Totems" instance=ExtResource("1_fdyty")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -80, 0, 0)
+skeleton = NodePath("../..")
+
+[node name="Totem3" parent="Totems" instance=ExtResource("1_fdyty")]
+transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0, 0, 80)
+skeleton = NodePath("../..")
+
+[node name="Totem4" parent="Totems" instance=ExtResource("1_fdyty")]
+transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0, 0, -80)
+skeleton = NodePath("../..")

@@ -1,27 +1,79 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgjwrwtls2s8l"]
+[gd_scene load_steps=16 format=3 uid="uid://dgjwrwtls2s8l"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_ske0b"]
-top_radius = 2.0
-bottom_radius = 1.0
-height = 6.0
+[ext_resource type="Material" uid="uid://npry6wqsyid5" path="res://Material/RobotMat.tres" id="1_tqq4q"]
+[ext_resource type="ArrayMesh" uid="uid://c4w87s2bjwfmn" path="res://Map/Mesh/Pillar.obj" id="2_03fjg"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_bhwoa"]
-height = 6.0
-radius = 2.0
+height = 54.8148
+radius = 12.3911
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_n28a1"]
-height = 6.0
-radius = 6.0
+height = 53.8801
+radius = 11.3454
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g11v4"]
+transparency = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="Curve" id="Curve_k7jx7"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.107296, 1), 0.0, 0.0, 0, 0, Vector2(0.44206, 0.736264), 0.0, 0.0, 0, 0, Vector2(1, 0), -5.28091, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_m7dmp"]
+curve = SubResource("Curve_k7jx7")
+
+[sub_resource type="Gradient" id="Gradient_hvhqm"]
+offsets = PackedFloat32Array(0, 0.0780488, 0.219512, 0.595122, 0.931707)
+colors = PackedColorArray(1, 1, 1, 1, 0.757813, 0.6702, 0, 1, 0.765625, 0.235238, 0, 1, 0.293664, 0.0902281, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nsski"]
+gradient = SubResource("Gradient_hvhqm")
+
+[sub_resource type="Curve" id="Curve_sp28o"]
+max_value = 2.65
+_data = [Vector2(0, 0.78022), 0.0, 0.0, 0, 0, Vector2(0.480687, 0.483516), 0.0, 0.0, 0, 0, Vector2(0.944206, 2.65), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_h58j7"]
+curve = SubResource("Curve_sp28o")
+
+[sub_resource type="Curve" id="Curve_1ydgd"]
+_data = [Vector2(0, 0), 0.0, 3.63462, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_sqkcl"]
+curve = SubResource("Curve_1ydgd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y0b1a"]
+emission_shape_scale = Vector3(2.8, 0.5, 2.8)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, 1, 0)
+initial_velocity_max = 7.69
+gravity = Vector3(0, 15, 0)
+damping_min = 3.0
+damping_max = 15.0
+scale_curve = SubResource("CurveTexture_h58j7")
+color_ramp = SubResource("GradientTexture1D_nsski")
+alpha_curve = SubResource("CurveTexture_m7dmp")
+turbulence_enabled = true
+turbulence_noise_scale = 6.0
+turbulence_noise_speed = Vector3(1, 0.5, 1)
+turbulence_influence_over_life = SubResource("CurveTexture_sqkcl")
+
+[sub_resource type="SphereMesh" id="SphereMesh_7s6gv"]
 
 [node name="Totem" type="MeshInstance3D" groups=["Totem"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 3, 0)
-mesh = SubResource("CylinderMesh_ske0b")
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+material_override = ExtResource("1_tqq4q")
+mesh = ExtResource("2_03fjg")
 
 [node name="Collision" type="StaticBody3D" parent="."]
 collision_layer = 8
 collision_mask = 35
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21.7552, 0)
 shape = SubResource("CylinderShape3D_bhwoa")
 
 [node name="DamageArea" type="Area3D" parent="."]
@@ -29,4 +81,37 @@ collision_layer = 8
 collision_mask = 35
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21.1895, 0)
 shape = SubResource("CylinderShape3D_n28a1")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38.6453, 0)
+material_override = SubResource("StandardMaterial3D_g11v4")
+amount = 500
+lifetime = 5.0
+preprocess = 2.2
+randomness = 0.23
+process_material = SubResource("ParticleProcessMaterial_y0b1a")
+draw_pass_1 = SubResource("SphereMesh_7s6gv")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0808525, 0)
+light_color = Color(1, 0.815686, 0.619608, 1)
+light_energy = 50.0
+light_size = 1.0
+shadow_enabled = true
+shadow_bias = 5.442
+shadow_normal_bias = 0.0
+shadow_blur = 0.0
+omni_range = 79.9826
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.13266, 0)
+light_color = Color(1, 0.568627, 0.305882, 1)
+light_energy = 20.0
+light_size = 1.0
+shadow_enabled = true
+shadow_bias = 5.442
+shadow_normal_bias = 0.0
+shadow_blur = 0.0
+omni_range = 29.869
