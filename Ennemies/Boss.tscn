@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dmqub28jeeye1"]
+[gd_scene load_steps=15 format=3 uid="uid://dmqub28jeeye1"]
 
 [ext_resource type="PackedScene" uid="uid://bbe1i874vdgyy" path="res://Ennemies/NavAgent.tscn" id="1_nsb7v"]
 [ext_resource type="PackedScene" uid="uid://d02t4rglf4u2y" path="res://Ennemies/leg.tscn" id="2_3ntgo"]
@@ -14,6 +14,10 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jh8an"]
 size = Vector3(20, 9.049, 30)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_20qg2"]
+height = 9.27961
+radius = 8.62544
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ra3u8"]
 height = 10.0
@@ -39,29 +43,83 @@ mesh = ExtResource("3_ex1oi")
 [node name="Legs" type="Node3D" parent="MeshInstance3D" index="0"]
 script = ExtResource("4_wk1tu")
 
-[node name="Leg" parent="MeshInstance3D/Legs" index="0" instance=ExtResource("2_3ntgo")]
+[node name="Leg" parent="MeshInstance3D/Legs" index="0" node_paths=PackedStringArray("area") instance=ExtResource("2_3ntgo")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18.1914, 0, -18)
 collision_layer = 2
+area = NodePath("Area3D")
 
-[node name="Leg2" parent="MeshInstance3D/Legs" index="1" instance=ExtResource("2_3ntgo")]
+[node name="Area3D" type="Area3D" parent="MeshInstance3D/Legs/Leg" index="3"]
+disable_mode = 2
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Legs/Leg/Area3D" index="0"]
+shape = SubResource("CylinderShape3D_20qg2")
+
+[node name="Leg2" parent="MeshInstance3D/Legs" index="1" node_paths=PackedStringArray("area") instance=ExtResource("2_3ntgo")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18.1914, 0, 18)
 collision_layer = 2
+area = NodePath("Area3D2")
 
-[node name="Leg3" parent="MeshInstance3D/Legs" index="2" instance=ExtResource("2_3ntgo")]
+[node name="Area3D2" type="Area3D" parent="MeshInstance3D/Legs/Leg2" index="3"]
+disable_mode = 2
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Legs/Leg2/Area3D2" index="0"]
+shape = SubResource("CylinderShape3D_20qg2")
+
+[node name="Leg3" parent="MeshInstance3D/Legs" index="2" node_paths=PackedStringArray("area") instance=ExtResource("2_3ntgo")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.18079e-07, 0, -18)
 collision_layer = 2
+area = NodePath("Area3D2")
 
-[node name="Leg4" parent="MeshInstance3D/Legs" index="3" instance=ExtResource("2_3ntgo")]
+[node name="Area3D2" type="Area3D" parent="MeshInstance3D/Legs/Leg3" index="3"]
+disable_mode = 2
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Legs/Leg3/Area3D2" index="0"]
+shape = SubResource("CylinderShape3D_20qg2")
+
+[node name="Leg4" parent="MeshInstance3D/Legs" index="3" node_paths=PackedStringArray("area") instance=ExtResource("2_3ntgo")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.18079e-07, 0, 18)
 collision_layer = 2
+area = NodePath("Area3D2")
 
-[node name="Leg5" parent="MeshInstance3D/Legs" index="4" instance=ExtResource("2_3ntgo")]
+[node name="Area3D2" type="Area3D" parent="MeshInstance3D/Legs/Leg4" index="3"]
+disable_mode = 2
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Legs/Leg4/Area3D2" index="0"]
+shape = SubResource("CylinderShape3D_20qg2")
+
+[node name="Leg5" parent="MeshInstance3D/Legs" index="4" node_paths=PackedStringArray("area") instance=ExtResource("2_3ntgo")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19.5902, 0, -18)
 collision_layer = 2
+area = NodePath("Area3D2")
 
-[node name="Leg6" parent="MeshInstance3D/Legs" index="5" instance=ExtResource("2_3ntgo")]
+[node name="Area3D2" type="Area3D" parent="MeshInstance3D/Legs/Leg5" index="3"]
+disable_mode = 2
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Legs/Leg5/Area3D2" index="0"]
+shape = SubResource("CylinderShape3D_20qg2")
+
+[node name="Leg6" parent="MeshInstance3D/Legs" index="5" node_paths=PackedStringArray("area") instance=ExtResource("2_3ntgo")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19.5902, 0, 18)
 collision_layer = 2
+area = NodePath("Area3D2")
+
+[node name="Area3D2" type="Area3D" parent="MeshInstance3D/Legs/Leg6" index="3"]
+disable_mode = 2
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Legs/Leg6/Area3D2" index="0"]
+shape = SubResource("CylinderShape3D_20qg2")
 
 [node name="Joints" type="Node3D" parent="MeshInstance3D" index="1"]
 
@@ -98,7 +156,7 @@ script = ExtResource("6_iim1w")
 [node name="Pïvot" type="Node3D" parent="Head/Neck" index="0"]
 
 [node name="HeadVisual" type="MeshInstance3D" parent="Head/Neck/Pïvot" index="0"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 6.48036)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 6.91009)
 material_override = ExtResource("2_vvjbn")
 instance_shader_parameters/lights = 0.0
 mesh = ExtResource("8_qnjin")
@@ -131,6 +189,11 @@ light_energy = 5.0
 light_size = 1.0
 spot_range = 8.00646
 spot_angle = 57.4563
+
+[node name="Joint7" parent="Head" index="1" node_paths=PackedStringArray("connection") instance=ExtResource("7_5kgil")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.65597)
+skeleton = NodePath("../../MeshInstance3D/Joints")
+connection = NodePath("../Neck/Pïvot/HeadVisual")
 
 [node name="KaijuTurretL" parent="." index="3" instance=ExtResource("8_geuck")]
 transform = Transform3D(-4.37114e-08, 0.320613, -0.94721, 0, 0.94721, 0.320613, 1, 1.40144e-08, -4.14039e-08, 12.383, 25.963, -13.827)
