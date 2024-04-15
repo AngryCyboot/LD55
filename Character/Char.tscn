@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://1r1t71hits1d"]
+[gd_scene load_steps=12 format=3 uid="uid://1r1t71hits1d"]
 
 [ext_resource type="Script" path="res://Character/Char.gd" id="1_t51nl"]
 [ext_resource type="AudioStream" uid="uid://b3mxxfvhrb5ic" path="res://Resources/Sound effects/dash.mp3" id="2_rdas7"]
@@ -9,6 +9,16 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q88io"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_uqn1v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jpv5b"]
+albedo_color = Color(1, 0.784314, 0, 1)
+metallic = 0.14
+roughness = 0.9
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_n6c1y"]
+top_radius = 0.0
+bottom_radius = 0.7
+height = 0.4
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_itcjs"]
 render_priority = 0
@@ -35,6 +45,11 @@ shape = SubResource("CapsuleShape3D_q88io")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
 mesh = SubResource("CapsuleMesh_uqn1v")
 skeleton = NodePath("../..")
+
+[node name="Hat" type="MeshInstance3D" parent="CollisionShape3D/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.927397, 0)
+material_override = SubResource("StandardMaterial3D_jpv5b")
+mesh = SubResource("CylinderMesh_n6c1y")
 
 [node name="Dash" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_rdas7")
