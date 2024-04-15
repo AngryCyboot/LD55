@@ -13,9 +13,14 @@ var color_code : Vector3
 @onready var circle_limit:Area3D=$CircleLimit
 @onready var link_to_boss:LinkToBoss=$LinkToBoss
 
+@export var creation_sound : AudioStreamPlayer3D
+@export var unsummon_sound : AudioStreamPlayer3D
+
 
 func _ready() -> void:
 	assert(_boss_to_unsummon)
+	if not creation_sound.playing :
+		creation_sound.play()
 	for n in get_children():
 		if n is CirclePart:
 			parts.append(n)
@@ -59,6 +64,8 @@ func check_completion():
 		elif part.material_id == 2:
 			check.z -= 1
 	if check == Vector3.ZERO:
+		if not unsummon_sound.playing :
+			unsummon_sound.play()
 		_boss_to_unsummon.unsummon()
 		destroy()
 

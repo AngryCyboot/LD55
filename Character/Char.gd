@@ -5,6 +5,7 @@ extends CharacterBody3D
 @export var dash_cooldown_time : float = 1.0
 @export var dash_speed : float = 15
 @export var dash_sound : AudioStreamPlayer3D
+@export var circle_sound : AudioStreamPlayer3D
 @export var death_sound : AudioStreamPlayer3D
 @export var spawn_sound : AudioStreamPlayer3D
 @export var village : Node3D
@@ -68,6 +69,7 @@ func draw_unsummon_circle():
 
 
 func draw_unsummon_circle_part():
+	if not circle_sound.playing : circle_sound.play()
 	_current_unsummoning_circle_part.next_one()
 
 
