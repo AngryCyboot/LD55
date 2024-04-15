@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmqub28jeeye1"]
+[gd_scene load_steps=14 format=3 uid="uid://dmqub28jeeye1"]
 
 [ext_resource type="PackedScene" uid="uid://bbe1i874vdgyy" path="res://Ennemies/NavAgent.tscn" id="1_nsb7v"]
 [ext_resource type="PackedScene" uid="uid://d02t4rglf4u2y" path="res://Ennemies/leg.tscn" id="2_3ntgo"]
@@ -7,13 +7,13 @@
 [ext_resource type="ArrayMesh" uid="uid://dqsm7lbmfqm42" path="res://Ennemies/Mesh/KaijuBody.obj" id="3_ex1oi"]
 [ext_resource type="Script" path="res://Ennemies/legs_manager.gd" id="4_wk1tu"]
 [ext_resource type="Script" path="res://Ennemies/Kaiju_brain.gd" id="6_iim1w"]
+[ext_resource type="PackedScene" uid="uid://kq63icylhd7l" path="res://Ennemies/joint.tscn" id="7_5kgil"]
 [ext_resource type="AudioStream" uid="uid://blxwbfcdy0286" path="res://Resources/Sound effects/meca_move.mp3" id="7_7shdu"]
+[ext_resource type="PackedScene" uid="uid://cbrw1dnr6docy" path="res://Ennemies/kaiju_turret.tscn" id="8_geuck"]
+[ext_resource type="ArrayMesh" uid="uid://usdqm321vy71" path="res://Ennemies/Mesh/KaijuHead.obj" id="8_qnjin"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jh8an"]
-size = Vector3(20, 18.598, 30)
-
-[sub_resource type="PrismMesh" id="PrismMesh_vykuq"]
-size = Vector3(8, 8, 8)
+size = Vector3(20, 9.049, 30)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ra3u8"]
 height = 10.0
@@ -30,7 +30,7 @@ move_left_sound = NodePath("move_left")
 move_right_sound = NodePath("move_right")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.30758, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.0821, 0)
 shape = SubResource("BoxShape3D_jh8an")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1"]
@@ -65,41 +65,92 @@ collision_layer = 2
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19.5902, 0, 18)
 collision_layer = 2
 
+[node name="Joints" type="Node3D" parent="MeshInstance3D" index="1"]
+
+[node name="Joint" parent="MeshInstance3D/Joints" index="0" node_paths=PackedStringArray("connection") instance=ExtResource("7_5kgil")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.233, 18.2321, -11.505)
+connection = NodePath("../../Legs/Leg/CollisionShape3D")
+
+[node name="Joint2" parent="MeshInstance3D/Joints" index="1" node_paths=PackedStringArray("connection") instance=ExtResource("7_5kgil")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.233, 18.232, 11.505)
+connection = NodePath("../../Legs/Leg2/CollisionShape3D")
+
+[node name="Joint3" parent="MeshInstance3D/Joints" index="2" node_paths=PackedStringArray("connection") instance=ExtResource("7_5kgil")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.232, -11.505)
+connection = NodePath("../../Legs/Leg3/CollisionShape3D")
+
+[node name="Joint4" parent="MeshInstance3D/Joints" index="3" node_paths=PackedStringArray("connection") instance=ExtResource("7_5kgil")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.232, 11.606)
+connection = NodePath("../../Legs/Leg4/CollisionShape3D")
+
+[node name="Joint5" parent="MeshInstance3D/Joints" index="4" node_paths=PackedStringArray("connection") instance=ExtResource("7_5kgil")]
+transform = Transform3D(0.999867, 0.0163007, 5.80869e-12, -0.0163007, 0.999867, 7.12524e-10, 5.80869e-12, -7.12524e-10, 1, -14.817, 18.232, -11.505)
+connection = NodePath("../../Legs/Leg5/CollisionShape3D")
+
+[node name="Joint6" parent="MeshInstance3D/Joints" index="5" node_paths=PackedStringArray("connection") instance=ExtResource("7_5kgil")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.817, 18.232, 11.505)
+connection = NodePath("../../Legs/Leg6/CollisionShape3D")
+
 [node name="Head" type="Node3D" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.111, 17.0151)
 script = ExtResource("6_iim1w")
-light_colors = PackedColorArray(1, 0, 0, 1, 1, 0.462745, 0, 1, 0.054902, 1, 0, 1)
 
 [node name="Neck" type="Node3D" parent="Head" index="0"]
 
-[node name="HeadVisual" type="MeshInstance3D" parent="Head/Neck" index="0"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 8)
-mesh = SubResource("PrismMesh_vykuq")
-skeleton = NodePath("../../../MeshInstance3D")
+[node name="Pïvot" type="Node3D" parent="Head/Neck" index="0"]
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Head/Neck/HeadVisual" index="0"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1.87496, 0, 0)
+[node name="HeadVisual" type="MeshInstance3D" parent="Head/Neck/Pïvot" index="0"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 6.48036)
+material_override = ExtResource("2_vvjbn")
+instance_shader_parameters/lights = 0.0
+mesh = ExtResource("8_qnjin")
+skeleton = NodePath("../../../../MeshInstance3D")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Head/Neck/Pïvot" index="1"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -1.99545, 2.82386, 8)
 light_energy = 50.0
+shadow_enabled = true
 spot_range = 150.0
 spot_angle = 10.0
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="Head/Neck/HeadVisual" index="1"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.875, 0, 0)
+[node name="SpotLight3D2" type="SpotLight3D" parent="Head/Neck/Pïvot" index="2"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 1.995, 2.824, 8)
 light_energy = 50.0
+shadow_enabled = true
 spot_range = 150.0
 spot_angle = 10.0
 
-[node name="move_left" type="AudioStreamPlayer3D" parent="." index="3"]
+[node name="SpotLight3D3" type="SpotLight3D" parent="Head/Neck/Pïvot" index="3"]
+transform = Transform3D(0.965695, -0.0484363, -0.255121, 0, 0.98245, -0.186524, 0.259679, 0.180125, 0.948748, -1.39707, 0, 13.511)
+light_energy = 5.0
+light_size = 1.0
+spot_range = 8.00646
+spot_angle = 57.4563
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="Head/Neck/Pïvot" index="4"]
+transform = Transform3D(0.965473, 0.0488137, 0.25589, 0, 0.982287, -0.187381, -0.260505, 0.180912, 0.948371, 1.397, 0, 13.511)
+light_energy = 5.0
+light_size = 1.0
+spot_range = 8.00646
+spot_angle = 57.4563
+
+[node name="KaijuTurretL" parent="." index="3" instance=ExtResource("8_geuck")]
+transform = Transform3D(-4.37114e-08, 0.320613, -0.94721, 0, 0.94721, 0.320613, 1, 1.40144e-08, -4.14039e-08, 12.383, 25.963, -13.827)
+
+[node name="KaijuTurretR" parent="." index="4" instance=ExtResource("8_geuck")]
+transform = Transform3D(-4.14088e-08, -0.320282, 0.947322, -1.4e-08, 0.947322, 0.320282, -1, 0, -4.37114e-08, -12.3825, 25.9629, -13.8272)
+
+[node name="move_left" type="AudioStreamPlayer3D" parent="." index="5"]
 stream = ExtResource("7_7shdu")
 volume_db = 20.0
 bus = &"SFX"
 
-[node name="move_right" type="AudioStreamPlayer3D" parent="." index="4"]
+[node name="move_right" type="AudioStreamPlayer3D" parent="." index="6"]
 stream = ExtResource("7_7shdu")
 volume_db = 20.0
 bus = &"SFX"
 
-[node name="BossUnsummoningArea" type="Area3D" parent="." index="5"]
+[node name="BossUnsummoningArea" type="Area3D" parent="." index="7"]
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="BossUnsummoningArea" index="0"]
 transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)

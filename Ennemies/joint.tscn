@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://kq63icylhd7l"]
+
+[ext_resource type="Script" path="res://Ennemies/joint.gd" id="1_ua6tc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uisq0"]
+albedo_color = Color(0.239216, 0.239216, 0.239216, 1)
+metallic = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_25tg0"]
+radius = 2.0
+height = 4.0
+
+[sub_resource type="Curve3D" id="Curve3D_ek412"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7.67),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wewuv"]
+albedo_color = Color(0.501961, 0.709804, 0.713726, 1)
+metallic = 0.32
+
+[node name="Joint" type="MeshInstance3D"]
+material_override = SubResource("StandardMaterial3D_uisq0")
+mesh = SubResource("SphereMesh_25tg0")
+script = ExtResource("1_ua6tc")
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_ek412")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Path3D"]
+material_override = SubResource("StandardMaterial3D_wewuv")
+calculate_tangents = false
+polygon = PackedVector2Array(-1, -1, -1, 1, 1, 1, 1, -1)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false

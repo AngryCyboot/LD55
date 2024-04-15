@@ -59,7 +59,7 @@ func compute_foot_target(target: Vector3 = boss._target_node.global_position) ->
 func mobile(x : bool)-> void:
 	if x != is_mobile:
 		is_mobile = x
-		visual.set_instance_shader_parameter("mobile",is_mobile)
+		visual.set_instance_shader_parameter("lights",int(is_mobile)-1)
 		if is_mobile :
 			parent.mobile += 1
 		else:
