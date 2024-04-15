@@ -1,9 +1,9 @@
 extends CharacterBody3D
 
-@export var movement_speed : float = 3000
+@export var movement_speed : float = 30
 @export var dash_time : float = 0.2
 @export var dash_cooldown_time : float = 1.0
-@export var dash_speed : float = 15
+@export var dash_speed : float = 10
 @export var dash_sound : AudioStreamPlayer3D
 @export var circle_sound : AudioStreamPlayer3D
 @export var death_sound : AudioStreamPlayer3D
@@ -32,7 +32,7 @@ func _process(delta):
 		#Dash time ends, reset velocity
 		if timer >= dash_time:
 			var char_input : Vector2 = Input.get_vector("West", "East", "North", "South")
-			velocity = Vector3(char_input.x,0,char_input.y)*delta*movement_speed
+			velocity = Vector3(char_input.x,0,char_input.y)*movement_speed
 		#Cooldown ok ? Enable dash
 		if cooldown_timer >= dash_cooldown_time:
 			ready_to_dash = true
