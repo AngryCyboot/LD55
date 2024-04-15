@@ -32,6 +32,10 @@ func _ready():
 	get_tree().root.add_child(_targetted)
 
 
+func _exit_tree() -> void:
+	_targetted.queue_free()
+
+
 func _process(delta):
 	target = agent._target_node
 	if charge_timer >= charge_duration:
