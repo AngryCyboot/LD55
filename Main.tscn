@@ -54,7 +54,6 @@ inactive_update_mode = 0
 camera_3D_resource = null
 
 [node name="MainCam" parent="." instance=ExtResource("6_kbuh7")]
-transform = Transform3D(1, 0, 0, 0, 0.5373, 0.843391, 0, -0.843391, 0.5373, 0, 50.3401, 19.898)
 current = true
 fov = 74.4163
 

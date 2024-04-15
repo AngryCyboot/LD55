@@ -1,25 +1,115 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvdittjs2laaw"]
+[gd_scene load_steps=8 format=3 uid="uid://cvdittjs2laaw"]
 
 [ext_resource type="PackedScene" uid="uid://bbe1i874vdgyy" path="res://Ennemies/NavAgent.tscn" id="1_v8j3l"]
+[ext_resource type="Script" path="res://Ennemies/legs_manager.gd" id="2_dj282"]
+[ext_resource type="PackedScene" uid="uid://d02t4rglf4u2y" path="res://Ennemies/leg.tscn" id="3_g1gby"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2c41s"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_vmqv6"]
+size = Vector3(3, 5, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tbxle"]
+size = Vector3(3, 5, 2)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k2wnv"]
 radius = 2.0
-height = 10.0
+height = 9.91269
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_r40d6"]
-top_radius = 1.5
-bottom_radius = 1.5
-height = 4.0
+top_radius = 2.0
+bottom_radius = 2.0
+height = 6.0
 
 [node name="Sbire" instance=ExtResource("1_v8j3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 collision_layer = 32
 mass = 500.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
-shape = SubResource("CapsuleShape3D_2c41s")
+[node name="Visual" type="Node3D" parent="." index="0"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" index="0"]
+[node name="Legs" type="Node3D" parent="Visual" index="0"]
+script = ExtResource("2_dj282")
+
+[node name="Leg3" parent="Visual/Legs" index="0" instance=ExtResource("3_g1gby")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.635, 0, 2.51733)
+max_speed = 30.0
+max_extention = 1.5
+close_enough = 0.5
+
+[node name="CollisionShape3D" parent="Visual/Legs/Leg3" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_vmqv6")
+
+[node name="LegVisual" parent="Visual/Legs/Leg3" index="1"]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visual/Legs/Leg3" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("BoxMesh_tbxle")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="Leg4" parent="Visual/Legs" index="1" instance=ExtResource("3_g1gby")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.635, 0, 2.51733)
+max_speed = 30.0
+max_extention = 1.5
+close_enough = 0.5
+
+[node name="CollisionShape3D" parent="Visual/Legs/Leg4" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_vmqv6")
+
+[node name="LegVisual" parent="Visual/Legs/Leg4" index="1"]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visual/Legs/Leg4" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("BoxMesh_tbxle")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="Leg5" parent="Visual/Legs" index="2" instance=ExtResource("3_g1gby")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.635, 0, -2.89865)
+max_speed = 30.0
+max_extention = 1.5
+close_enough = 0.5
+
+[node name="CollisionShape3D" parent="Visual/Legs/Leg5" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_vmqv6")
+
+[node name="LegVisual" parent="Visual/Legs/Leg5" index="1"]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visual/Legs/Leg5" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("BoxMesh_tbxle")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="Leg6" parent="Visual/Legs" index="3" instance=ExtResource("3_g1gby")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.635, 0, -2.89865)
+max_speed = 30.0
+max_extention = 1.5
+close_enough = 0.5
+
+[node name="CollisionShape3D" parent="Visual/Legs/Leg6" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_vmqv6")
+
+[node name="LegVisual" parent="Visual/Legs/Leg6" index="1"]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visual/Legs/Leg6" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("BoxMesh_tbxle")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 5, 0)
+shape = SubResource("CapsuleShape3D_k2wnv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 5, 0)
 mesh = SubResource("CylinderMesh_r40d6")
-skeleton = NodePath("../..")
+
+[editable path="Visual/Legs/Leg3"]
+[editable path="Visual/Legs/Leg4"]
+[editable path="Visual/Legs/Leg5"]
+[editable path="Visual/Legs/Leg6"]
