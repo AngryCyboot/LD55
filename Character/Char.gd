@@ -19,6 +19,7 @@ var _current_unsummoning_circle:Node3D = null
 var _current_unsummoning_circle_part:CirclePart = null
 var alive : bool = true
 
+@onready var ring : MeshInstance3D = $ColoRing
 @onready var _unsummoning_circle_scene:= preload("res://Character/UnsummonCircleExample.tscn")
 
 
@@ -97,10 +98,10 @@ func exit_boss_unsummoning_area(boss:Boss):
 
 func update_ring() -> void:
 	if _current_unsummoning_circle != null:
-		$ColoRing.visible = true
-		$ColoRing.set_instance_shader_parameter("color_code",_current_unsummoning_circle.color_code)
+		ring.visible = true
+		ring.material_override.set_shader_parameter("color_code",_current_unsummoning_circle.color_code)
 	else:
-		$ColoRing.visible = false
+		ring.visible = false
 
 func you_died() -> void :
 	alive = false

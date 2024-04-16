@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://d02t4rglf4u2y"]
+[gd_scene load_steps=9 format=3 uid="uid://d02t4rglf4u2y"]
 
 [ext_resource type="Script" path="res://Ennemies/leg.gd" id="1_lm678"]
 [ext_resource type="PackedScene" uid="uid://jd3v2rksd7ox" path="res://Ennemies/Attacks/boom.tscn" id="2_08ee5"]
-[ext_resource type="Shader" uid="uid://32gfv44mqhvk" path="res://Material/Robot.tres" id="2_dy47d"]
-[ext_resource type="Texture2D" uid="uid://bwjwcdqxlemk1" path="res://Material/robot_palet.png" id="3_jf5fd"]
+[ext_resource type="Material" uid="uid://npry6wqsyid5" path="res://Material/RobotMat.tres" id="3_63ah7"]
 [ext_resource type="ArrayMesh" uid="uid://cc4etpipl0n8v" path="res://Ennemies/Mesh/KaijuLeg.obj" id="4_crx8x"]
 
 [sub_resource type="Curve" id="Curve_lnsdb"]
@@ -13,11 +12,6 @@ point_count = 2
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_40rod"]
 radius = 4.91578
 height = 17.8101
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_f7n6l"]
-render_priority = 0
-shader = ExtResource("2_dy47d")
-shader_parameter/Palette = ExtResource("3_jf5fd")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qtkm4"]
 shading_mode = 0
@@ -45,7 +39,7 @@ shape = SubResource("CapsuleShape3D_40rod")
 
 [node name="LegVisual" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0161, 0)
-material_override = SubResource("ShaderMaterial_f7n6l")
+material_override = ExtResource("3_63ah7")
 mesh = ExtResource("4_crx8x")
 
 [node name="debug" type="MeshInstance3D" parent="."]

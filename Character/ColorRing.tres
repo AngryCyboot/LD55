@@ -34,7 +34,6 @@ constant = 6.28319
 [sub_resource type="VisualShaderNodeVec3Parameter" id="VisualShaderNodeVec3Parameter_t1vdv"]
 expanded_output_ports = [0]
 parameter_name = "color_code"
-qualifier = 2
 
 [sub_resource type="VisualShaderNodeCompare" id="VisualShaderNodeCompare_il8mw"]
 function = 4
@@ -82,7 +81,7 @@ input_name = "vertex"
 code = "shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx, unshaded;
 
-instance uniform vec3 color_code;
+uniform vec3 color_code;
 
 
 
@@ -188,7 +187,7 @@ void fragment() {
 // MultiplyAdd:12
 	float n_in12p1 = 0.50000;
 	float n_in12p2 = 0.50000;
-	float n_out12p0 = fma(n_out11p0, n_in12p1, n_in12p2);
+	float n_out12p0 = (n_out11p0 * n_in12p1) + n_in12p2;
 
 
 // FloatOp:13
@@ -210,6 +209,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-1637.12, -199.667)
 flags/unshaded = true
 nodes/vertex/2/node = SubResource("VisualShaderNodeInput_cxl2k")
 nodes/vertex/2/position = Vector2(-341.568, 137.472)

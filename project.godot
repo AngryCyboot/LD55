@@ -72,6 +72,10 @@ Context={
 3d_physics/layer_5="circle"
 3d_physics/layer_6="sbire"
 
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+
 [specific]
 
 world/size=Vector2(1000, 1000)

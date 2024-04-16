@@ -192,7 +192,7 @@ void vertex() {
 // MultiplyAdd:26
 	float n_in26p1 = 0.10000;
 	float n_in26p2 = 1.40000;
-	float n_out26p0 = fma(n_out25p0, n_in26p1, n_in26p2);
+	float n_out26p0 = (n_out25p0 * n_in26p1) + n_in26p2;
 
 
 // FloatOp:14
@@ -312,7 +312,7 @@ void fragment() {
 // MultiplyAdd:13
 	float n_in13p1 = 0.30000;
 	float n_in13p2 = 0.70000;
-	float n_out13p0 = fma(n_out12p0, n_in13p1, n_in13p2);
+	float n_out13p0 = (n_out12p0 * n_in13p1) + n_in13p2;
 
 
 // Output:0

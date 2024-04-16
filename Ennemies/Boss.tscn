@@ -180,7 +180,6 @@ is_head = true
 [node name="HeadVisual" type="MeshInstance3D" parent="Head/Neck/Pïvot" index="0"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 6.91009)
 material_override = ExtResource("2_vvjbn")
-instance_shader_parameters/lights = 0.0
 mesh = ExtResource("8_qnjin")
 skeleton = NodePath("../../../../MeshInstance3D")
 

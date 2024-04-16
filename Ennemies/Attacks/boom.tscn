@@ -29,8 +29,8 @@ height = 0.8
 [node name="Boom" type="GPUParticles3D"]
 material_override = SubResource("StandardMaterial3D_kqpow")
 emitting = false
-amount = 600
-lifetime = 2.0
+amount = 50
+lifetime = 1.5
 one_shot = true
 explosiveness = 0.93
 visibility_aabb = AABB(-8.45891, -4, -11.6346, 16.9178, 8, 23.2692)

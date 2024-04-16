@@ -24,6 +24,7 @@ height = 0.4
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_itcjs"]
 render_priority = 0
 shader = ExtResource("5_k24bf")
+shader_parameter/color_code = null
 
 [sub_resource type="TorusMesh" id="TorusMesh_wut8e"]
 inner_radius = 4.0
@@ -74,5 +75,4 @@ pitch_scale = 0.2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.308694, 0)
 visible = false
 material_override = SubResource("ShaderMaterial_itcjs")
-instance_shader_parameters/color_code = Vector3(1, 1, 2)
 mesh = SubResource("TorusMesh_wut8e")

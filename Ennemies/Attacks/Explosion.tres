@@ -235,7 +235,7 @@ void process() {
 // MultiplyAdd:26
 		float n_in26p1 = 0.50000;
 		float n_in26p2 = 1.00000;
-		float n_out26p0 = fma(n_out13p0, n_in26p1, n_in26p2);
+		float n_out26p0 = (n_out13p0 * n_in26p1) + n_in26p2;
 
 
 // VectorOp:24
