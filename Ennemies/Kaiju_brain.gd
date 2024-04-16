@@ -29,7 +29,7 @@ func _ready():
 		if light is SpotLight3D: lights.append(light)
 	
 	_targetted = _targetted_scene.instantiate()
-	get_tree().root.add_child(_targetted)
+	get_tree().root.add_child.call_deferred(_targetted)
 
 
 func _exit_tree() -> void:

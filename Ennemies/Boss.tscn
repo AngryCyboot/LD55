@@ -7,7 +7,7 @@
 [ext_resource type="ArrayMesh" uid="uid://dqsm7lbmfqm42" path="res://Ennemies/Mesh/KaijuBody.obj" id="3_ex1oi"]
 [ext_resource type="Script" path="res://Ennemies/legs_manager.gd" id="4_wk1tu"]
 [ext_resource type="Script" path="res://Ennemies/Kaiju_brain.gd" id="6_iim1w"]
-[ext_resource type="PackedScene" path="res://Ennemies/joint.tscn" id="7_5kgil"]
+[ext_resource type="PackedScene" uid="uid://kq63icylhd7l" path="res://Ennemies/joint.tscn" id="7_5kgil"]
 [ext_resource type="AudioStream" uid="uid://blxwbfcdy0286" path="res://Resources/Sound effects/meca_move.mp3" id="7_7shdu"]
 [ext_resource type="PackedScene" uid="uid://c2a00ilvqohbd" path="res://Ennemies/kaiju_turret.tscn" id="8_geuck"]
 [ext_resource type="ArrayMesh" uid="uid://usdqm321vy71" path="res://Ennemies/Mesh/KaijuHead.obj" id="8_qnjin"]

@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddn10m5d3ys5r"]
+
+[ext_resource type="Script" path="res://ui.gd" id="1_vsby7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7r10d"]
+font_size = 50
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vsby7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -218.0
+offset_top = -104.5
+offset_right = 218.0
+offset_bottom = 104.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_7r10d")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Title"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="explanation" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "- protect the village by unsummoning the beasts
+- move using WASD or your local equivalent or L. Joystick
+- dash using Shift or any trigger
+- Unsummon with space or button \"A\" when prompted"
+
+[node name="Panel" type="Panel" parent="VBoxContainer/explanation"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "restart"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="play"]

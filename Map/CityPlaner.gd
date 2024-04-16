@@ -6,7 +6,6 @@ extends MultiMeshInstance3D
 @onready var houses : MultiMesh = $".".multimesh
 
 func _ready():
-	var last_pos : Vector3 = Vector3.ZERO
 	var radius : float = village_radius
 	var x = 0
 	for i in houses.instance_count:

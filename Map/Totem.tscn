@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://dgjwrwtls2s8l"]
+[gd_scene load_steps=17 format=3 uid="uid://dgjwrwtls2s8l"]
 
 [ext_resource type="Material" uid="uid://npry6wqsyid5" path="res://Material/RobotMat.tres" id="1_tqq4q"]
 [ext_resource type="ArrayMesh" uid="uid://c4w87s2bjwfmn" path="res://Map/Mesh/Pillar.obj" id="2_03fjg"]
+[ext_resource type="Script" path="res://Map/Totem.gd" id="3_j613c"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_bhwoa"]
 height = 54.8148
@@ -69,8 +70,10 @@ material_override = ExtResource("1_tqq4q")
 mesh = ExtResource("2_03fjg")
 
 [node name="Collision" type="StaticBody3D" parent="."]
+disable_mode = 2
 collision_layer = 8
 collision_mask = 35
+script = ExtResource("3_j613c")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collision"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21.7552, 0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://m6y446t0sadi"]
+[gd_scene load_steps=11 format=3 uid="uid://m6y446t0sadi"]
 
 [ext_resource type="PackedScene" uid="uid://b62w0fm25jrs0" path="res://Map/Map.tscn" id="1_u7ov3"]
 [ext_resource type="Script" path="res://Main.gd" id="1_ybr70"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="4_mt10q"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_eleqy"]
 [ext_resource type="PackedScene" uid="uid://vxbcgijnwukf" path="res://MainCam.tscn" id="6_kbuh7"]
+[ext_resource type="PackedScene" uid="uid://ddn10m5d3ys5r" path="res://ui.tscn" id="8_lbl87"]
 
 [sub_resource type="Environment" id="Environment_fxl0a"]
 adjustment_enabled = true
@@ -57,5 +58,7 @@ camera_3D_resource = null
 transform = Transform3D(1, 0, 0, 0, 0.5373, 0.843391, 0, -0.843391, 0.5373, 0, 50.3401, 80.0185)
 current = true
 fov = 73.8038
+
+[node name="UI" parent="MainCam" instance=ExtResource("8_lbl87")]
 
 [node name="Enemies" type="Node3D" parent="."]

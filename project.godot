@@ -85,3 +85,4 @@ enemies/boss/destination_offset=20.0
 enemies/sbire/min_distance_to_boss=30.0
 enemies/sbire/max_distance_to_boss=50.0
 enemies/char_attraction_distance=80.0
+state/paused=true

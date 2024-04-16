@@ -23,24 +23,26 @@ var alive : bool = true
 
 
 func _process(delta):
-	if alive:
-		#Update timers
-		if timer < dash_time:
-			timer += delta
-		if cooldown_timer < dash_cooldown_time:
-			cooldown_timer += delta
-		#Dash time ends, reset velocity
-		if timer >= dash_time:
-			var char_input : Vector2 = Input.get_vector("West", "East", "North", "South")
-			velocity = Vector3(char_input.x,0,char_input.y)*movement_speed
-		#Cooldown ok ? Enable dash
-		if cooldown_timer >= dash_cooldown_time:
-			ready_to_dash = true
-			
-		move_and_slide()
-	else:
-		timer+=delta
-		respawn()
+	var paused : bool = ProjectSettings.get_setting("specific/state/paused")
+	if not paused:
+		if alive:
+			#Update timers
+			if timer < dash_time:
+				timer += delta
+			if cooldown_timer < dash_cooldown_time:
+				cooldown_timer += delta
+			#Dash time ends, reset velocity
+			if timer >= dash_time:
+				var char_input : Vector2 = Input.get_vector("West", "East", "North", "South")
+				velocity = Vector3(char_input.x,0,char_input.y)*movement_speed
+			#Cooldown ok ? Enable dash
+			if cooldown_timer >= dash_cooldown_time:
+				ready_to_dash = true
+				
+			move_and_slide()
+		else:
+			timer+=delta
+			respawn()
 
 func _input(event):
 	if event.is_action_pressed("Dash") and ready_to_dash:
