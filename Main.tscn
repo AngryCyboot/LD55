@@ -1,21 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://m6y446t0sadi"]
+[gd_scene load_steps=8 format=3 uid="uid://m6y446t0sadi"]
 
 [ext_resource type="PackedScene" uid="uid://b62w0fm25jrs0" path="res://Map/Map.tscn" id="1_u7ov3"]
 [ext_resource type="Script" path="res://Main.gd" id="1_ybr70"]
 [ext_resource type="PackedScene" uid="uid://dykunhocgt6mr" path="res://Map/Village.tscn" id="2_q44hr"]
 [ext_resource type="PackedScene" uid="uid://1r1t71hits1d" path="res://Character/Char.tscn" id="3_fyrox"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="4_mt10q"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_eleqy"]
 [ext_resource type="PackedScene" uid="uid://vxbcgijnwukf" path="res://MainCam.tscn" id="6_kbuh7"]
 [ext_resource type="PackedScene" uid="uid://ddn10m5d3ys5r" path="res://ui.tscn" id="8_lbl87"]
 
 [sub_resource type="Environment" id="Environment_fxl0a"]
-
-[sub_resource type="Resource" id="Resource_546gc"]
-script = ExtResource("5_eleqy")
-duration = 1.0
-transition = 0
-ease = 2
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_ybr70")
@@ -30,34 +22,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.731142, 60.1205)
 village = NodePath("../Village")
 environement = SubResource("Environment_fxl0a")
 
+[node name="MainCam" parent="Char" instance=ExtResource("6_kbuh7")]
+transform = Transform3D(1, 0, 0, 0, 0.358368, 0.93358, 0, -0.93358, 0.358368, 0, 55, 22)
+current = true
+fov = 75.0
+
+[node name="UI" parent="Char/MainCam" instance=ExtResource("8_lbl87")]
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_fxl0a")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.880022, 0.474933, 0, -0.474933, -0.880022, 0, 54.1794, 0)
 shadow_enabled = true
-
-[node name="PhantomCamera3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.5373, 0.843391, 0, -0.843391, 0.5373, 0, 55.7311, 82.1205)
-script = ExtResource("4_mt10q")
-priority_override = false
-priority = 0
-follow_mode = 2
-follow_target = NodePath("../Char")
-follow_parameters/target_offset = Vector3(0, 55, 22)
-follow_parameters/damping = true
-follow_parameters/damping_value = 10.0
-look_at_mode = 0
-tween_parameters = SubResource("Resource_546gc")
-tween_on_load = true
-inactive_update_mode = 0
-camera_3D_resource = null
-
-[node name="MainCam" parent="." instance=ExtResource("6_kbuh7")]
-transform = Transform3D(1, 0, 0, 0, 0.5373, 0.843391, 0, -0.843391, 0.5373, 0, 55.7311, 82.1205)
-current = true
-fov = 74.9902
-
-[node name="UI" parent="MainCam" instance=ExtResource("8_lbl87")]
 
 [node name="Enemies" type="Node3D" parent="."]

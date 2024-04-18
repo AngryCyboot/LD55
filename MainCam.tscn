@@ -1,6 +1,5 @@
-[gd_scene load_steps=3 format=3 uid="uid://vxbcgijnwukf"]
+[gd_scene load_steps=2 format=3 uid="uid://vxbcgijnwukf"]
 
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_1ai66"]
 [ext_resource type="AudioStream" uid="uid://dpsk20bv1rx0x" path="res://Resources/Musics/LD55_Apocalypse.mp3" id="2_wwbgp"]
 
 [node name="Camera3D" type="Camera3D"]
@@ -14,6 +13,3 @@ current = true
 stream = ExtResource("2_wwbgp")
 autoplay = true
 bus = &"Music"
-
-[node name="PhantomCameraHost" type="Node" parent="."]
-script = ExtResource("1_1ai66")
