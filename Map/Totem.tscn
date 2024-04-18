@@ -17,7 +17,7 @@ transparency = 1
 vertex_color_use_as_albedo = true
 
 [sub_resource type="Curve" id="Curve_k7jx7"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.107296, 1), 0.0, 0.0, 0, 0, Vector2(0.44206, 0.736264), 0.0, 0.0, 0, 0, Vector2(1, 0), -5.28091, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.107296, 1), 0.0, 0.0, 0, 0, Vector2(0.875, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -29.5386, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="CurveTexture" id="CurveTexture_m7dmp"]
@@ -32,7 +32,7 @@ gradient = SubResource("Gradient_hvhqm")
 
 [sub_resource type="Curve" id="Curve_sp28o"]
 max_value = 2.65
-_data = [Vector2(0, 0.78022), 0.0, 0.0, 0, 0, Vector2(0.480687, 0.483516), 0.0, 0.0, 0, 0, Vector2(0.944206, 2.65), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.611539), 0.0, 0.0, 0, 0, Vector2(0.480687, 0.483516), 0.0, 0.0, 0, 0, Vector2(1, 2.65), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_h58j7"]
@@ -46,14 +46,16 @@ point_count = 2
 curve = SubResource("Curve_1ydgd")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y0b1a"]
+lifetime_randomness = 0.25
 emission_shape_scale = Vector3(2.8, 0.5, 2.8)
 emission_shape = 3
 emission_box_extents = Vector3(1, 1, 1)
 direction = Vector3(0, 1, 0)
 initial_velocity_max = 7.69
-gravity = Vector3(0, 15, 0)
-damping_min = 3.0
-damping_max = 15.0
+gravity = Vector3(0, 12, 0)
+damping_min = 8.0
+damping_max = 12.0
+scale_max = 2.0
 scale_curve = SubResource("CurveTexture_h58j7")
 color_ramp = SubResource("GradientTexture1D_nsski")
 alpha_curve = SubResource("CurveTexture_m7dmp")
@@ -90,27 +92,16 @@ shape = SubResource("CylinderShape3D_n28a1")
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38.6453, 0)
 material_override = SubResource("StandardMaterial3D_g11v4")
-amount = 500
-lifetime = 5.0
-preprocess = 2.2
+amount = 90
+lifetime = 8.0
+preprocess = 7.1
 randomness = 0.23
 process_material = SubResource("ParticleProcessMaterial_y0b1a")
 draw_pass_1 = SubResource("SphereMesh_7s6gv")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="GPUParticles3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0808525, 0)
-light_color = Color(1, 0.815686, 0.619608, 1)
-light_energy = 50.0
-light_size = 1.0
-shadow_enabled = true
-shadow_bias = 5.442
-shadow_normal_bias = 0.0
-shadow_blur = 0.0
-omni_range = 79.9826
-
 [node name="OmniLight3D2" type="OmniLight3D" parent="GPUParticles3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.13266, 0)
-light_color = Color(1, 0.568627, 0.305882, 1)
+light_color = Color(1, 0.788235, 0.521569, 1)
 light_energy = 20.0
 light_size = 1.0
 shadow_enabled = true

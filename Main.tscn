@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://ddn10m5d3ys5r" path="res://ui.tscn" id="8_lbl87"]
 
 [sub_resource type="Environment" id="Environment_fxl0a"]
-adjustment_enabled = true
 
 [sub_resource type="Resource" id="Resource_546gc"]
 script = ExtResource("5_eleqy")
@@ -39,13 +38,13 @@ transform = Transform3D(1, 0, 0, 0, -0.880022, 0.474933, 0, -0.474933, -0.880022
 shadow_enabled = true
 
 [node name="PhantomCamera3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.5373, 0.843391, 0, -0.843391, 0.5373, 0, 50.3401, 80.0185)
+transform = Transform3D(1, 0, 0, 0, 0.5373, 0.843391, 0, -0.843391, 0.5373, 0, 55.7311, 82.1205)
 script = ExtResource("4_mt10q")
 priority_override = false
 priority = 0
 follow_mode = 2
 follow_target = NodePath("../Char")
-follow_parameters/target_offset = Vector3(0, 49.609, 19.898)
+follow_parameters/target_offset = Vector3(0, 55, 22)
 follow_parameters/damping = true
 follow_parameters/damping_value = 10.0
 look_at_mode = 0
@@ -55,9 +54,9 @@ inactive_update_mode = 0
 camera_3D_resource = null
 
 [node name="MainCam" parent="." instance=ExtResource("6_kbuh7")]
-transform = Transform3D(1, 0, 0, 0, 0.5373, 0.843391, 0, -0.843391, 0.5373, 0, 50.3401, 80.0185)
+transform = Transform3D(1, 0, 0, 0, 0.5373, 0.843391, 0, -0.843391, 0.5373, 0, 55.7311, 82.1205)
 current = true
-fov = 73.8038
+fov = 74.9902
 
 [node name="UI" parent="MainCam" instance=ExtResource("8_lbl87")]
 

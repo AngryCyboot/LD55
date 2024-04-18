@@ -1,7 +1,8 @@
 extends Node3D
 
-var boss_scene : PackedScene = preload("res://Ennemies/Boss.tscn")
-var sbire_scene :  PackedScene = preload("res://Ennemies/Sbire.tscn")
+var boss_scene : PackedScene
+#var sbire_scene :  PackedScene = preload("res://Ennemies/Sbire.tscn")
+var init : bool = false
 
 @export var spawn_radius : float = 1000
 @export var spawn_time : float = 60
@@ -11,8 +12,12 @@ var sbire_scene :  PackedScene = preload("res://Ennemies/Sbire.tscn")
 @onready var timer : float = spawn_time - 5
 
 func _process(delta):
-	timer += delta
+	var paused : bool = ProjectSettings.get_setting("specific/state/paused")
+	timer += delta if not paused else 0
 	if timer > spawn_time :
+		if not init :
+			boss_scene = load("res://Ennemies/Boss.tscn")
+			init = true
 		var boss : Boss = boss_scene.instantiate()
 		#var i : int = randi_range(3,5)
 		var angle : float = randf_range(0,TAU)

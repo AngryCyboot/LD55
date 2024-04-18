@@ -6,6 +6,7 @@ var mobile : int = 0
 func _ready():
 	for leg in get_children():
 		if leg is Leg : legs.append(leg)
+		leg.init()
 	mobile = legs.size()
 
 func _process(_delta):

@@ -29,6 +29,7 @@ radius = 110.0
 material_override = SubResource("ShaderMaterial_lo0fy")
 multimesh = SubResource("MultiMesh_kr7vj")
 script = ExtResource("1_7pero")
+instances = 600
 
 [node name="Area3D" type="Area3D" parent="."]
 disable_mode = 2

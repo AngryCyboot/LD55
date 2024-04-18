@@ -38,8 +38,6 @@ fractal_lacunarity = 1.885
 fractal_gain = 0.165
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yxybo"]
-width = 1024
-height = 1024
 generate_mipmaps = false
 noise = SubResource("FastNoiseLite_34rg2")
 

@@ -14,10 +14,9 @@ class_name Leg
 
 var is_mobile : bool = true
 var speed : float = 0
-var rest_pos :Node3D
+var rest_pos :Node3D = Node3D.new()
 
-func _ready():
-	rest_pos = Node3D.new()
+func init():
 	$"..".add_child.call_deferred(rest_pos)
 	rest_pos.position = position
 	rest_pos.name = name + "RestPos"
