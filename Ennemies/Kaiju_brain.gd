@@ -22,6 +22,7 @@ var lights : Array[SpotLight3D]
 var is_in_range : bool = false
 var attack_timer : float = 0
 var attack_duration : float = 2.4
+var attacking: bool = false
 
 
 func _ready():
@@ -58,9 +59,10 @@ func watch() -> void :
 
 
 func attack(delta : float) -> void :
-	if attack_timer == 0: # attack beginning
+	if attack_timer >= attack_duration and not attacking: # attack beginning
 		_targetted.global_position = target.global_position
 		create_laser_beam(target.global_position)
+		attacking = true
 		if is_head:
 			var target_direction = (target.global_position - global_position).normalized()
 			target_direction = target_direction.project(Vector3(target_direction.x,0,target_direction.z))
@@ -74,7 +76,8 @@ func attack(delta : float) -> void :
 	
 	set_light_color(0)
 	attack_timer += delta
-	if attack_timer >= attack_duration :
+	if attack_timer >= attack_duration*2 :
+		attacking = false
 		attack_timer = 0
 		charge_timer = 0
 
