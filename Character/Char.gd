@@ -61,19 +61,18 @@ func _input(event):
 
 
 func draw_unsummon_circle():
-	if not circle_sound.playing :circle_sound.play()
 	_current_unsummoning_circle = _unsummoning_circle_scene.instantiate()
 	_current_unsummoning_circle.position = Vector3(global_position.x, 0.1, global_position.z)
 	_current_unsummoning_circle.connect("character_entered_part", enter_part)
 	_current_unsummoning_circle.connect("character_exited_part", exit_part)
 	_current_unsummoning_circle._boss_to_unsummon = _current_boss
+	_current_unsummoning_circle.character = self
 	get_tree().root.add_child(_current_unsummoning_circle, true)
 	_current_boss.prompt.visible = false
 	update_ring()
 
 
 func draw_unsummon_circle_part():
-	if not circle_sound.playing : circle_sound.play()
 	_current_unsummoning_circle_part.next_one()
 
 
@@ -123,3 +122,6 @@ func respawn() -> void:
 		environement.adjustment_saturation = 1
 	elif timer >1.1:
 		environement.adjustment_saturation = timer-0.6
+
+func unsummon() -> void:
+	$unsummon.play()

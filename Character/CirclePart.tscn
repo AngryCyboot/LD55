@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cxve7sf5kwtgb"]
+[gd_scene load_steps=12 format=3 uid="uid://cxve7sf5kwtgb"]
 
 [ext_resource type="Script" path="res://Character/CirclePart.gd" id="1_sassf"]
 [ext_resource type="Material" uid="uid://be6o1hustkq7j" path="res://Material/CirclePart_R.tres" id="2_dqmo5"]
@@ -6,21 +6,20 @@
 [ext_resource type="Material" uid="uid://chid205ybwcfq" path="res://Material/CirclePart_B.tres" id="4_haldg"]
 [ext_resource type="Script" path="res://Ennemies/Sprite3D.gd" id="5_l5kf5"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_c17a1"]
-size = Vector2(100, 100)
-
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_h3y2s"]
 height = 10.0
 radius = 10.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hh1ik"]
-albedo_color = Color(0, 0.568627, 1, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dut4w"]
+shading_mode = 0
+albedo_color = Color(0.427451, 0.427451, 0.427451, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ecrox"]
-material = SubResource("StandardMaterial3D_hh1ik")
-top_radius = 10.0
+top_radius = 7.0
 bottom_radius = 10.0
 height = 0.001
+cap_top = false
+cap_bottom = false
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ig8gg"]
 viewport_path = NodePath("Sprite3D/SubViewport")
@@ -39,8 +38,8 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[node name="CirclePart" type="MeshInstance3D"]
-mesh = SubResource("PlaneMesh_c17a1")
+[node name="CirclePart" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.543, 0, 0)
 script = ExtResource("1_sassf")
 materials = Array[Material]([ExtResource("2_dqmo5"), ExtResource("3_v4j5k"), ExtResource("4_haldg")])
 
@@ -51,8 +50,9 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Center"]
 shape = SubResource("CylinderShape3D_h3y2s")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Center"]
+[node name="ColorViz" type="MeshInstance3D" parent="Center"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+material_override = SubResource("StandardMaterial3D_dut4w")
 mesh = SubResource("CylinderMesh_ecrox")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]

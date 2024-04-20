@@ -1,31 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dcpw6jf74tnyl"]
+[gd_scene load_steps=2 format=3 uid="uid://dcpw6jf74tnyl"]
 
 [ext_resource type="PackedScene" uid="uid://4crrl08b445v" path="res://Character/BaseUnsummonCircle.tscn" id="1_wc4dy"]
-[ext_resource type="PackedScene" uid="uid://cxve7sf5kwtgb" path="res://Character/CirclePart.tscn" id="2_p8ayd"]
-[ext_resource type="AudioStream" uid="uid://b28r0wwwclp30" path="res://Resources/Sound effects/place_summon_circle.mp3" id="3_fyokv"]
-[ext_resource type="AudioStream" uid="uid://ck6idlugiw2lv" path="res://Resources/Sound effects/valid_summon_circle.mp3" id="4_io7tc"]
 
-[node name="UnsummonCircle" node_paths=PackedStringArray("creation_sound", "unsummon_sound") instance=ExtResource("1_wc4dy")]
-creation_sound = NodePath("creation")
-unsummon_sound = NodePath("unsummon")
-
-[node name="CirclePart" parent="." index="3" instance=ExtResource("2_p8ayd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 50)
-
-[node name="CirclePart2" parent="." index="4" instance=ExtResource("2_p8ayd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 50)
-
-[node name="CirclePart3" parent="." index="5" instance=ExtResource("2_p8ayd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, -50)
-
-[node name="CirclePart4" parent="." index="6" instance=ExtResource("2_p8ayd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, -50)
-
-[node name="creation" type="AudioStreamPlayer3D" parent="." index="7"]
-stream = ExtResource("3_fyokv")
-volume_db = 40.0
-bus = &"SFX"
-
-[node name="unsummon" type="AudioStreamPlayer3D" parent="." index="8"]
-stream = ExtResource("4_io7tc")
-volume_db = 25.0
+[node name="UnsummonCircle" instance=ExtResource("1_wc4dy")]
+size = 70.0
