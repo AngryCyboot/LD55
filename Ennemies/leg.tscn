@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://d02t4rglf4u2y"]
+[gd_scene load_steps=10 format=3 uid="uid://d02t4rglf4u2y"]
 
 [ext_resource type="Script" path="res://Ennemies/leg.gd" id="1_lm678"]
 [ext_resource type="PackedScene" uid="uid://jd3v2rksd7ox" path="res://Ennemies/Attacks/boom.tscn" id="2_08ee5"]
 [ext_resource type="Material" uid="uid://npry6wqsyid5" path="res://Material/RobotMat.tres" id="3_63ah7"]
 [ext_resource type="ArrayMesh" uid="uid://cc4etpipl0n8v" path="res://Ennemies/Mesh/KaijuLeg.obj" id="4_crx8x"]
+[ext_resource type="AudioStream" uid="uid://bjntepbvksjy8" path="res://Resources/Sound effects/meca_step.mp3" id="5_4lyoq"]
 
 [sub_resource type="Curve" id="Curve_lnsdb"]
 _data = [Vector2(0, 0), 0.0, 6.70265, 0, 0, Vector2(0.357724, 0.790323), 0.147453, 0.0, 0, 0]
@@ -46,3 +47,11 @@ mesh = ExtResource("4_crx8x")
 visible = false
 material_override = SubResource("StandardMaterial3D_qtkm4")
 mesh = SubResource("SphereMesh_q5bqe")
+
+[node name="Stomp" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_4lyoq")
+attenuation_model = 2
+unit_size = 90.0
+max_db = -8.0
+pitch_scale = 0.8
+panning_strength = 5.0

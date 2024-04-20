@@ -1,12 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://dgjwrwtls2s8l"]
+[gd_scene load_steps=18 format=3 uid="uid://dgjwrwtls2s8l"]
 
 [ext_resource type="Material" uid="uid://npry6wqsyid5" path="res://Material/RobotMat.tres" id="1_tqq4q"]
 [ext_resource type="ArrayMesh" uid="uid://c4w87s2bjwfmn" path="res://Map/Mesh/Pillar.obj" id="2_03fjg"]
 [ext_resource type="Script" path="res://Map/Totem.gd" id="3_j613c"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_bhwoa"]
+resource_local_to_scene = true
 height = 54.8148
 radius = 12.3911
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_72xsu"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_n28a1"]
 height = 53.8801
@@ -80,6 +83,14 @@ script = ExtResource("3_j613c")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collision"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21.7552, 0)
 shape = SubResource("CylinderShape3D_bhwoa")
+
+[node name="Destruction" type="AudioStreamPlayer3D" parent="Collision"]
+stream = SubResource("AudioStreamPolyphonic_72xsu")
+attenuation_model = 2
+volume_db = 15.0
+unit_size = 40.0
+max_db = -3.0
+pitch_scale = 0.8
 
 [node name="DamageArea" type="Area3D" parent="."]
 collision_layer = 8

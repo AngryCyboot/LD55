@@ -61,6 +61,7 @@ func _input(event):
 
 
 func draw_unsummon_circle():
+	if not circle_sound.playing :circle_sound.play()
 	_current_unsummoning_circle = _unsummoning_circle_scene.instantiate()
 	_current_unsummoning_circle.position = Vector3(global_position.x, 0.1, global_position.z)
 	_current_unsummoning_circle.connect("character_entered_part", enter_part)

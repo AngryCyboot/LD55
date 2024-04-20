@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://b3mxxfvhrb5ic" path="res://Resources/Sound effects/dash.mp3" id="2_rdas7"]
 [ext_resource type="AudioStream" uid="uid://8vocnrlcpt4r" path="res://Resources/Sound effects/player_hurt.wav" id="3_pd1qg"]
 [ext_resource type="AudioStream" uid="uid://c4dpei846fbh3" path="res://Resources/Sound effects/spawn.mp3" id="4_ha17b"]
-[ext_resource type="AudioStream" uid="uid://dg7ayg14v6nvv" path="res://Resources/Sound effects/summon_part.mp3" id="5_1lhwb"]
+[ext_resource type="AudioStream" uid="uid://b28r0wwwclp30" path="res://Resources/Sound effects/place_summon_circle.mp3" id="5_3lv7r"]
 [ext_resource type="Shader" uid="uid://b5wu5rm42cd5q" path="res://Character/ColorRing.tres" id="5_k24bf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q88io"]
@@ -67,7 +67,7 @@ stream = ExtResource("3_pd1qg")
 stream = ExtResource("4_ha17b")
 
 [node name="circle" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("5_1lhwb")
+stream = ExtResource("5_3lv7r")
 volume_db = -5.0
 pitch_scale = 0.2
 

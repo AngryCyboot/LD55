@@ -69,6 +69,7 @@ func mobile(x : bool)-> void:
 		else:
 			parent.mobile -= 1
 			if area!= null : damage()
+			$Stomp.play()
 
 func damage() -> void :
 	var boom : GPUParticles3D = particules.instantiate()

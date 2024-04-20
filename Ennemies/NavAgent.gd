@@ -55,7 +55,7 @@ func determine_target() -> void:
 	var closest_totem : Node3D = null
 	for t in get_tree().get_nodes_in_group("Totem"):
 		var dist = global_position.distance_to(t.global_position)
-		if dist < closest_totem_distance:
+		if dist < closest_totem_distance and t.visible:
 			closest_totem_distance = dist
 			closest_totem = t
 
