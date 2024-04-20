@@ -8,4 +8,4 @@ func spawn() -> Vector3:
 func destroyed_totem():
 	totems -=1
 	if totems ==0:
-		$"../MainCam/UI".failure()
+		$"../Char/MainCam/UI".failure()
