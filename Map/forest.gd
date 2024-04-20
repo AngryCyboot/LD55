@@ -2,6 +2,7 @@ extends MultiMeshInstance3D
 
 @export var instances : int = 1000
 @export var radius : float = 100
+@export var inner_radius : float = 0
 
 @onready var area : Area3D = $Area3D
 
@@ -12,7 +13,7 @@ func _ready():
 	$Area3D/CollisionShape3D.shape.radius = radius +10
 
 func _process(_delta):
-	position = position #voudou magic
+	#position = position #voudou magic
 	if mecha_is_in:
 		var guests : Array[Node3D]
 		guests = area.get_overlapping_bodies()
@@ -30,7 +31,7 @@ func setup():
 	multimesh.instance_count = instances
 	for i in instances:
 		var angle : float = TAU*(float(i)/float(instances))
-		var pos : Vector3 = Vector3(cos(angle),0,sin(angle))* randf_range(0,radius)
+		var pos : Vector3 = Vector3(cos(angle),0,sin(angle))* randf_range(inner_radius,radius)
 		pos.y = randf_range(0,0.5)
 		multimesh.set_instance_transform(i,Transform3D(Basis(),pos))
 

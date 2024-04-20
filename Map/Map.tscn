@@ -94,7 +94,24 @@ shape = SubResource("WorldBoundaryShape3D_cl35r")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -500)
 shape = SubResource("WorldBoundaryShape3D_cl35r")
 
-[node name="Trees" parent="." instance=ExtResource("5_koaoi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -248.867, 0, 0)
+[node name="Forests" type="Node3D" parent="."]
 
-[connection signal="property_list_changed" from="Trees" to="Trees" method="_on_property_list_changed"]
+[node name="Forest" parent="Forests" instance=ExtResource("5_koaoi")]
+instances = 1000
+radius = 500.0
+inner_radius = 200.0
+
+[node name="Forest2" parent="Forests" instance=ExtResource("5_koaoi")]
+instances = 400
+radius = 300.0
+inner_radius = 90.0
+
+[node name="Forest3" parent="Forests" instance=ExtResource("5_koaoi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300.765, 0, 284.343)
+instances = 200
+inner_radius = 2.0
+
+[node name="Forest4" parent="Forests" instance=ExtResource("5_koaoi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 281.036, 0, -274.294)
+instances = 200
+inner_radius = 2.0
