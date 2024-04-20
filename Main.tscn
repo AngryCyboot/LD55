@@ -16,6 +16,7 @@ spawn_radius = 500.0
 [node name="Map" parent="." instance=ExtResource("1_u7ov3")]
 
 [node name="Village" parent="." instance=ExtResource("2_q44hr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Char" parent="." node_paths=PackedStringArray("village") instance=ExtResource("3_fyrox")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.731142, 60.1205)
