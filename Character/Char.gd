@@ -39,7 +39,7 @@ func _process(delta):
 			#Cooldown ok ? Enable dash
 			if cooldown_timer >= dash_cooldown_time:
 				ready_to_dash = true
-				
+			$ColoRing.rotate_y(delta)
 			move_and_slide()
 		else:
 			timer+=delta
