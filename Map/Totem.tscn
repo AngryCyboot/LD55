@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dgjwrwtls2s8l"]
+[gd_scene load_steps=16 format=3 uid="uid://dgjwrwtls2s8l"]
 
 [ext_resource type="Material" uid="uid://npry6wqsyid5" path="res://Material/RobotMat.tres" id="1_tqq4q"]
 [ext_resource type="ArrayMesh" uid="uid://c4w87s2bjwfmn" path="res://Map/Mesh/Pillar.obj" id="2_03fjg"]
@@ -18,13 +18,6 @@ radius = 11.3454
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g11v4"]
 transparency = 1
 vertex_color_use_as_albedo = true
-
-[sub_resource type="Curve" id="Curve_k7jx7"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.107296, 1), 0.0, 0.0, 0, 0, Vector2(0.875, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -29.5386, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_m7dmp"]
-curve = SubResource("Curve_k7jx7")
 
 [sub_resource type="Gradient" id="Gradient_hvhqm"]
 offsets = PackedFloat32Array(0, 0.0780488, 0.219512, 0.595122, 0.931707)
@@ -61,13 +54,14 @@ damping_max = 12.0
 scale_max = 2.0
 scale_curve = SubResource("CurveTexture_h58j7")
 color_ramp = SubResource("GradientTexture1D_nsski")
-alpha_curve = SubResource("CurveTexture_m7dmp")
 turbulence_enabled = true
 turbulence_noise_scale = 6.0
 turbulence_noise_speed = Vector3(1, 0.5, 1)
 turbulence_influence_over_life = SubResource("CurveTexture_sqkcl")
 
 [sub_resource type="SphereMesh" id="SphereMesh_7s6gv"]
+radial_segments = 16
+rings = 8
 
 [node name="Totem" type="MeshInstance3D" groups=["Totem"]]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
@@ -103,10 +97,11 @@ shape = SubResource("CylinderShape3D_n28a1")
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38.6453, 0)
 material_override = SubResource("StandardMaterial3D_g11v4")
-amount = 90
-lifetime = 8.0
+amount = 60
+lifetime = 9.0
 preprocess = 7.1
 randomness = 0.23
+draw_order = 3
 process_material = SubResource("ParticleProcessMaterial_y0b1a")
 draw_pass_1 = SubResource("SphereMesh_7s6gv")
 
@@ -119,3 +114,4 @@ shadow_bias = 5.442
 shadow_normal_bias = 0.0
 shadow_blur = 0.0
 omni_range = 29.869
+omni_shadow_mode = 0

@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=29 format=3 uid="uid://l3ed4ojbitjh"]
+[gd_resource type="VisualShader" load_steps=25 format=3 uid="uid://l3ed4ojbitjh"]
 
 [sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_t86t0"]
 function = 12
@@ -25,25 +25,11 @@ operator = 2
 default_input_values = [0, 0.0, 1, -1.5]
 operator = 2
 
-[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_0wccx"]
-parameter_name = "Texture2DParameter"
-texture_repeat = 2
-
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_owk8b"]
 input_name = "transform"
 
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_too1m"]
-expanded_output_ports = [0]
-source = 5
-
-[sub_resource type="VisualShaderNodeVectorDistance" id="VisualShaderNodeVectorDistance_6ncxe"]
-
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_pwr64"]
 default_input_values = [0, 0.0, 1, 1.0]
-
-[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_xsjqj"]
-default_input_values = [0, 0.0, 1, 1.1]
-operator = 3
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_uplg5"]
 expanded_output_ports = [0]
@@ -96,7 +82,6 @@ constant = 0.1
 code = "shader_type particles;
 uniform float force = 5;
 uniform float impact_area = 1;
-uniform sampler2D Texture2DParameter : repeat_disable;
 
 
 float __rand_from_seed(inout uint seed) {
@@ -307,26 +292,9 @@ void process() {
 		vec3 n_out17p0 = vec3(n_out12p0.xyz) * vec3(n_out22p0);
 
 
-// Distance:21
-		vec3 n_in21p1 = vec3(0.00000, 0.00000, 0.00000);
-		float n_out21p0 = distance(vec3(n_out12p0.xyz), n_in21p1);
-
-
-// FloatOp:23
-		float n_in23p1 = 1.10000;
-		float n_out23p0 = n_out21p0 / n_in23p1;
-
-
-		vec4 n_out20p0;
-// Texture2D:20
-		n_out20p0 = texture(Texture2DParameter, vec2(n_out23p0));
-		float n_out20p1 = n_out20p0.r;
-
-
 // ProcessOutput:0
 		VELOCITY = n_out7p0;
 		COLOR.rgb = n_out17p0;
-		COLOR.a = n_out20p1;
 
 
 	}
@@ -381,18 +349,10 @@ nodes/process/17/node = SubResource("VisualShaderNodeVectorOp_bxmeh")
 nodes/process/17/position = Vector2(-746.411, 728.608)
 nodes/process/18/node = SubResource("VisualShaderNodeFloatOp_crns7")
 nodes/process/18/position = Vector2(-980, 100)
-nodes/process/19/node = SubResource("VisualShaderNodeTexture2DParameter_0wccx")
-nodes/process/19/position = Vector2(-1380, 1060)
-nodes/process/20/node = SubResource("VisualShaderNodeTexture_too1m")
-nodes/process/20/position = Vector2(-760, 1040)
-nodes/process/21/node = SubResource("VisualShaderNodeVectorDistance_6ncxe")
-nodes/process/21/position = Vector2(-1086.99, 924.812)
 nodes/process/22/node = SubResource("VisualShaderNodeFloatOp_pwr64")
 nodes/process/22/position = Vector2(-1720, 400)
-nodes/process/23/node = SubResource("VisualShaderNodeFloatOp_xsjqj")
-nodes/process/23/position = Vector2(-920, 980)
 nodes/process/24/node = SubResource("VisualShaderNodeVectorOp_uplg5")
 nodes/process/24/position = Vector2(-1500, -60)
 nodes/process/26/node = SubResource("VisualShaderNodeMultiplyAdd_rcv4r")
 nodes/process/26/position = Vector2(-1780, 100)
-nodes/process/connections = PackedInt32Array(2, 0, 3, 0, 3, 3, 4, 0, 4, 1, 7, 0, 8, 0, 7, 4, 9, 0, 7, 5, 10, 0, 11, 0, 11, 0, 9, 1, 7, 0, 0, 1, 13, 0, 14, 1, 15, 0, 8, 1, 14, 0, 15, 1, 12, 0, 17, 0, 17, 0, 0, 2, 4, 1, 18, 0, 18, 0, 14, 0, 19, 0, 20, 2, 12, 0, 21, 0, 20, 1, 0, 3, 13, 0, 22, 0, 22, 0, 17, 1, 13, 0, 11, 1, 21, 0, 23, 0, 23, 0, 20, 0, 6, 0, 24, 0, 24, 0, 7, 3, 24, 0, 8, 0, 24, 1, 9, 0, 24, 2, 10, 0, 24, 3, 9, 2, 13, 0, 26, 0, 26, 0, 24, 1)
+nodes/process/connections = PackedInt32Array(2, 0, 3, 0, 3, 3, 4, 0, 4, 1, 7, 0, 8, 0, 7, 4, 9, 0, 7, 5, 10, 0, 11, 0, 11, 0, 9, 1, 7, 0, 0, 1, 13, 0, 14, 1, 15, 0, 8, 1, 14, 0, 15, 1, 12, 0, 17, 0, 17, 0, 0, 2, 4, 1, 18, 0, 18, 0, 14, 0, 13, 0, 22, 0, 22, 0, 17, 1, 13, 0, 11, 1, 6, 0, 24, 0, 24, 0, 7, 3, 24, 0, 8, 0, 24, 1, 9, 0, 24, 2, 10, 0, 24, 3, 9, 2, 13, 0, 26, 0, 26, 0, 24, 1)

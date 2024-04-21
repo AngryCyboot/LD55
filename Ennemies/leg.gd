@@ -56,7 +56,6 @@ func compute_foot_target(target: Vector3 = boss._target_node.global_position) ->
 	var foot_target: Vector3 = $"..".global_position.direction_to(target)
 	foot_target = foot_target * (max_extention-close_enough) + rest_pos.global_position
 	foot_target.y = 0
-	$debug.global_position = foot_target
 	return foot_target
 
 func mobile(x : bool)-> void:

@@ -13,7 +13,7 @@ func _ready():
 	title.text = title_labels[0]
 	start_button.text = button_labels[0]
 
-func _process(delta):
+func _process(_delta):
 	$Label.text = "SCORE : " + str(score)
 
 func failure() :

@@ -72,9 +72,18 @@ Context={
 3d_physics/layer_5="circle"
 3d_physics/layer_6="sbire"
 
+[physics]
+
+3d/solver/solver_iterations=8
+3d/solver/contact_recycle_radius=0.03
+3d/solver/contact_max_allowed_penetration=0.03
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
+lights_and_shadows/positional_shadow/soft_shadow_filter_quality=1
+shader_compiler/shader_cache/compress=false
+driver/depth_prepass/enable=false
 
 [specific]
 

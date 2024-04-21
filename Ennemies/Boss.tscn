@@ -186,28 +186,24 @@ skeleton = NodePath("../../../../MeshInstance3D")
 [node name="SpotLight3D" type="SpotLight3D" parent="Head/Neck/Pïvot" index="1"]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -1.99545, 2.82386, 8)
 light_energy = 50.0
-spot_range = 150.0
-spot_angle = 10.0
+light_bake_mode = 0
+spot_range = 120.0
+spot_angle = 8.0
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="Head/Neck/Pïvot" index="2"]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 1.995, 2.824, 8)
 light_energy = 50.0
-spot_range = 150.0
-spot_angle = 10.0
+light_bake_mode = 0
+spot_range = 120.0
+spot_angle = 8.0
 
 [node name="SpotLight3D3" type="SpotLight3D" parent="Head/Neck/Pïvot" index="3"]
-transform = Transform3D(0.965695, -0.0484363, -0.255121, 0, 0.98245, -0.186524, 0.259679, 0.180125, 0.948748, -1.39707, 0, 13.511)
+transform = Transform3D(1, 0, 0, 0, 0.982613, -0.185667, 0, 0.185667, 0.982613, 0, 0, 14.58)
 light_energy = 5.0
 light_size = 1.0
-spot_range = 8.00646
-spot_angle = 57.4563
-
-[node name="SpotLight3D4" type="SpotLight3D" parent="Head/Neck/Pïvot" index="4"]
-transform = Transform3D(0.965473, 0.0488137, 0.25589, 0, 0.982287, -0.187381, -0.260505, 0.180912, 0.948371, 1.397, 0, 13.511)
-light_energy = 5.0
-light_size = 1.0
-spot_range = 8.00646
-spot_angle = 57.4563
+light_bake_mode = 0
+spot_range = 12.0081
+spot_angle = 40.5466
 
 [node name="Joint7" parent="Head" index="1" node_paths=PackedStringArray("connection") instance=ExtResource("7_5kgil")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.65597)

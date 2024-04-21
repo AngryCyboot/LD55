@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://jd3v2rksd7ox"]
+[gd_scene load_steps=6 format=3 uid="uid://jd3v2rksd7ox"]
 
 [ext_resource type="Shader" uid="uid://l3ed4ojbitjh" path="res://Ennemies/Attacks/Explosion.tres" id="1_ocfg4"]
 [ext_resource type="Script" path="res://Ennemies/Attacks/boom.gd" id="2_safjb"]
@@ -9,27 +9,19 @@ vertex_color_use_as_albedo = true
 emission_enabled = true
 emission = Color(0.137255, 0.137255, 0.137255, 1)
 
-[sub_resource type="Curve" id="Curve_jp38o"]
-_data = [Vector2(0, 0), 0.0, 10.9953, 0, 0, Vector2(0.145631, 0.835165), 1.4337, 1.4337, 0, 0, Vector2(0.461165, 1), 0.0, 0.0, 0, 0, Vector2(0.737864, 0.747253), -2.26374, -2.26374, 0, 0, Vector2(0.864078, 0.197802), -2.11282, -2.11282, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 6
-
-[sub_resource type="CurveTexture" id="CurveTexture_3h53h"]
-curve = SubResource("Curve_jp38o")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_afxqm"]
 shader = ExtResource("1_ocfg4")
-shader_parameter/force = 3.0
-shader_parameter/impact_area = 2.0
-shader_parameter/Texture2DParameter = SubResource("CurveTexture_3h53h")
+shader_parameter/force = 2.5
+shader_parameter/impact_area = 1.5
 
 [sub_resource type="SphereMesh" id="SphereMesh_bwtoc"]
-radius = 0.4
-height = 0.8
+radial_segments = 16
+rings = 8
 
 [node name="Boom" type="GPUParticles3D"]
 material_override = SubResource("StandardMaterial3D_kqpow")
 emitting = false
-amount = 50
+amount = 25
 lifetime = 1.5
 one_shot = true
 explosiveness = 0.93

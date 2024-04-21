@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d02t4rglf4u2y"]
+[gd_scene load_steps=8 format=3 uid="uid://d02t4rglf4u2y"]
 
 [ext_resource type="Script" path="res://Ennemies/leg.gd" id="1_lm678"]
 [ext_resource type="PackedScene" uid="uid://jd3v2rksd7ox" path="res://Ennemies/Attacks/boom.tscn" id="2_08ee5"]
@@ -13,13 +13,6 @@ point_count = 2
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_40rod"]
 radius = 4.91578
 height = 17.8101
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qtkm4"]
-shading_mode = 0
-albedo_color = Color(1, 0, 0.772549, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_q5bqe"]
-radius = 1.0
 
 [node name="Leg" type="AnimatableBody3D"]
 disable_mode = 2
@@ -42,11 +35,6 @@ shape = SubResource("CapsuleShape3D_40rod")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0161, 0)
 material_override = ExtResource("3_63ah7")
 mesh = ExtResource("4_crx8x")
-
-[node name="debug" type="MeshInstance3D" parent="."]
-visible = false
-material_override = SubResource("StandardMaterial3D_qtkm4")
-mesh = SubResource("SphereMesh_q5bqe")
 
 [node name="Stomp" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_4lyoq")
