@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://ddn10m5d3ys5r" path="res://ui.tscn" id="8_lbl87"]
 
 [sub_resource type="Environment" id="Environment_fxl0a"]
+fog_enabled = true
+fog_light_color = Color(0.517647, 0.552941, 0.607843, 1)
+fog_light_energy = 0.0
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_ybr70")
@@ -18,10 +21,8 @@ spawn_radius = 500.0
 [node name="Village" parent="." instance=ExtResource("2_q44hr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="Char" parent="." node_paths=PackedStringArray("village") instance=ExtResource("3_fyrox")]
+[node name="Char" parent="." instance=ExtResource("3_fyrox")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.731142, 60.1205)
-village = NodePath("../Village")
-environement = SubResource("Environment_fxl0a")
 
 [node name="MainCam" parent="Char" instance=ExtResource("6_kbuh7")]
 transform = Transform3D(1, 0, 0, 0, 0.358368, 0.93358, 0, -0.93358, 0.358368, 0, 55, 22)

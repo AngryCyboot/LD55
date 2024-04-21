@@ -3,6 +3,7 @@ extends Control
 var button_labels : Array[String] = ["Play","Restart"]
 var title_labels : Array[String] = ["UNSUMMONING Dark creatures","You failed to defend the village"]
 var game_over : bool = false
+var score : int = 0
 
 @onready var start_button : Button = $VBoxContainer/Button
 @onready var title : Label = $VBoxContainer/Title
@@ -11,6 +12,9 @@ var game_over : bool = false
 func _ready():
 	title.text = title_labels[0]
 	start_button.text = button_labels[0]
+
+func _process(delta):
+	$Label.text = "SCORE : " + str(score)
 
 func failure() :
 	ProjectSettings.set_setting("specific/state/paused",true)
