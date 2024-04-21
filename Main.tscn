@@ -11,10 +11,12 @@
 fog_enabled = true
 fog_light_color = Color(0.517647, 0.552941, 0.607843, 1)
 fog_light_energy = 0.0
+fog_density = 0.005
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_ybr70")
-spawn_radius = 500.0
+spawn_radius = 450.0
+spawn_time = 45.0
 
 [node name="Map" parent="." instance=ExtResource("1_u7ov3")]
 

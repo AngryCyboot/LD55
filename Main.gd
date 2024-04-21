@@ -23,14 +23,11 @@ func _process(delta):
 		var angle : float = randf_range(0,TAU)
 		boss.position = Vector3(cos(angle),0,sin(angle))*spawn_radius
 		boss.rotate_y(-angle)
-		var r : int = randi_range(0,2)
-		var g : int = randi_range(0,2)
-		var b : int = randi_range(0,2)
-		if r+g+b == 0:
-			var code : Array = [r,g,b]
+		var code : Array = [randi_range(0,2),randi_range(0,2),randi_range(0,2)]
+		if code[0]+code[1]+code[2] < 2:
 			code[randi_range(0,2)] +=1
 			code[randi_range(0,2)] +=1
-		boss.unsummon_color_code = Vector3(r,g,b)
+		boss.unsummon_color_code = Vector3(code[0],code[1],code[2])
 		$Enemies.add_child(boss)
 		#for x in i:
 			#angle = float(x/float(i)) * TAU
